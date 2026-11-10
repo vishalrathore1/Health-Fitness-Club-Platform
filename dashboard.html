@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>FitClub | Premium Analytics Dashboard</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -34,40 +33,40 @@ header {
 
 h1 {
     color: #d6ad55;
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .subtitle {
     color: #aaa;
     margin-top: 8px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .tag {
     border: 1px solid #d6ad55;
     color: #d6ad55;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 13px;
 }
 
 h2 {
     color: #d6ad55;
-    font-size: 19px;
-    margin: 28px 0 16px;
+    font-size: 21px;
+    margin: 30px 0 18px;
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
 }
 
 .card, .panel {
     background: #1c1c1c;
     border: 1px solid #38332a;
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 15px;
+    padding: 22px;
 }
 
 .card {
@@ -76,54 +75,54 @@ h2 {
 
 .card p {
     color: #aaa;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .card h2 {
-    font-size: 27px;
+    font-size: 30px;
     color: #e4c477;
-    margin: 14px 0 6px;
+    margin: 15px 0 8px;
 }
 
 .card small {
-    color: #888;
+    color: #999;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
+    gap: 20px;
 }
 
 .panel h3 {
-    font-size: 15px;
-    margin-bottom: 18px;
+    font-size: 17px;
+    margin-bottom: 20px;
     color: #e4c477;
 }
 
 .chart {
-    height: 260px;
+    height: 270px;
     position: relative;
 }
 
 .note {
     color: #aaa;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.8;
     margin-top: 10px;
 }
 
 .status {
     color: #d6ad55;
-    font-size: 12px;
-    margin-top: 12px;
+    font-size: 13px;
+    margin-top: 15px;
 }
 
 footer {
     text-align: center;
-    color: #777;
-    margin: 35px 0 10px;
-    font-size: 12px;
+    color: #888;
+    margin: 40px 0 15px;
+    font-size: 13px;
 }
 
 @media(max-width:600px) {
@@ -132,7 +131,7 @@ footer {
     }
 
     h1 {
-        font-size: 22px;
+        font-size: 23px;
     }
 
     .chart {
@@ -151,7 +150,6 @@ footer {
             Health & Fitness Club Membership | CRM / MIS
         </p>
     </div>
-
     <span class="tag">PREMIUM DASHBOARD</span>
 </header>
 
@@ -215,7 +213,7 @@ footer {
 
 </section>
 
-<!-- PAYMENT AND MEMBER ANALYSIS -->
+<!-- MEMBER ANALYSIS -->
 
 <h2>Payment, Gender & Member Analysis</h2>
 
@@ -261,11 +259,9 @@ footer {
     FitClub Membership Analytics | Academic Project Dashboard
 </footer>
 
-<!-- CHART JAVASCRIPT -->
-
 <script>
 
-Chart.defaults.color = "#ccc";
+Chart.defaults.color = "#cccccc";
 Chart.defaults.font.family = "Arial";
 
 const common = {
@@ -277,34 +273,22 @@ const common = {
 
 new Chart(document.getElementById("revenue"), {
     type: "bar",
-
     data: {
         labels: ["Premium", "Standard"],
-
         datasets: [{
             label: "Revenue (₹)",
             data: [2465000, 1521000],
-
-            backgroundColor: [
-                "#d6ad55",
-                "#8b713c"
-            ]
+            backgroundColor: ["#D6AD55", "#8B713C"],
+            borderRadius: 5
         }]
     },
-
     options: {
         ...common,
-
         plugins: {
-            legend: {
-                display: false
-            }
+            legend: { display: false }
         },
-
         scales: {
-            y: {
-                beginAtZero: true
-            }
+            y: { beginAtZero: true }
         }
     }
 });
@@ -313,29 +297,21 @@ new Chart(document.getElementById("revenue"), {
 
 new Chart(document.getElementById("members"), {
     type: "doughnut",
-
     data: {
         labels: ["Premium", "Standard"],
-
         datasets: [{
             data: [493, 507],
-
-            backgroundColor: [
-                "#d6ad55",
-                "#8b713c"
-            ],
-
-            borderColor: "#1c1c1c"
+            backgroundColor: ["#D6AD55", "#5B9BD5"],
+            borderColor: "#1c1c1c",
+            borderWidth: 4,
+            hoverOffset: 12
         }]
     },
-
     options: {
         ...common,
-
+        cutout: "60%",
         plugins: {
-            legend: {
-                position: "bottom"
-            }
+            legend: { position: "bottom" }
         }
     }
 });
@@ -344,31 +320,25 @@ new Chart(document.getElementById("members"), {
 
 new Chart(document.getElementById("paymentMethods"), {
     type: "doughnut",
-
     data: {
         labels: ["Card", "Cash", "UPI"],
-
         datasets: [{
             data: [334, 333, 333],
-
             backgroundColor: [
-                "#d6ad55",
-                "#8b713c",
-                "#b9a078"
+                "#D6AD55",
+                "#38B2AC",
+                "#A78BFA"
             ],
-
             borderColor: "#1c1c1c",
-            borderWidth: 3
+            borderWidth: 4,
+            hoverOffset: 12
         }]
     },
-
     options: {
         ...common,
-
+        cutout: "60%",
         plugins: {
-            legend: {
-                position: "bottom"
-            }
+            legend: { position: "bottom" }
         }
     }
 });
@@ -377,30 +347,24 @@ new Chart(document.getElementById("paymentMethods"), {
 
 new Chart(document.getElementById("genderChart"), {
     type: "doughnut",
-
     data: {
         labels: ["Female", "Male"],
-
         datasets: [{
             data: [503, 497],
-
             backgroundColor: [
-                "#d6ad55",
-                "#8b713c"
+                "#E6B85C",
+                "#5B9BD5"
             ],
-
             borderColor: "#1c1c1c",
-            borderWidth: 3
+            borderWidth: 4,
+            hoverOffset: 12
         }]
     },
-
     options: {
         ...common,
-
+        cutout: "60%",
         plugins: {
-            legend: {
-                position: "bottom"
-            }
+            legend: { position: "bottom" }
         }
     }
 });
@@ -409,31 +373,25 @@ new Chart(document.getElementById("genderChart"), {
 
 new Chart(document.getElementById("engagementChart"), {
     type: "doughnut",
-
     data: {
         labels: ["Moderate", "High", "Low"],
-
         datasets: [{
             data: [586, 220, 194],
-
             backgroundColor: [
-                "#d6ad55",
-                "#8b713c",
-                "#b9a078"
+                "#38B2AC",
+                "#D6AD55",
+                "#A78BFA"
             ],
-
             borderColor: "#1c1c1c",
-            borderWidth: 3
+            borderWidth: 4,
+            hoverOffset: 12
         }]
     },
-
     options: {
         ...common,
-
+        cutout: "60%",
         plugins: {
-            legend: {
-                position: "bottom"
-            }
+            legend: { position: "bottom" }
         }
     }
 });
@@ -442,31 +400,25 @@ new Chart(document.getElementById("engagementChart"), {
 
 new Chart(document.getElementById("churnChart"), {
     type: "doughnut",
-
     data: {
         labels: ["High Risk", "Medium Risk", "Low Risk"],
-
         datasets: [{
             data: [194, 272, 532],
-
             backgroundColor: [
-                "#c65d4b",
-                "#d6ad55",
-                "#8b713c"
+                "#E06455",
+                "#E6B85C",
+                "#38A169"
             ],
-
             borderColor: "#1c1c1c",
-            borderWidth: 3
+            borderWidth: 4,
+            hoverOffset: 12
         }]
     },
-
     options: {
         ...common,
-
+        cutout: "60%",
         plugins: {
-            legend: {
-                position: "bottom"
-            }
+            legend: { position: "bottom" }
         }
     }
 });
