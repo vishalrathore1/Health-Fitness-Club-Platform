@@ -4,225 +4,473 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FitClub Analytics Dashboard</title>
+
+<title>FitClub | Premium Analytics Dashboard</title>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
- background:#090b0d;color:#fff;
- font-family:Arial,sans-serif;padding:25px
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-.header{
- display:flex;justify-content:space-between;
- align-items:center;flex-wrap:wrap;gap:15px;
- margin-bottom:28px
+
+body {
+    background: #101010;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 25px;
 }
-.logo{font-size:25px;font-weight:bold;color:#d6ad55;letter-spacing:2px}
-.header p{color:#999;font-size:13px}
-.section-title{color:#d6ad55;font-size:12px;letter-spacing:3px;margin-bottom:8px}
-h1{font-size:27px;margin-bottom:8px}
-.subtitle{color:#999;font-size:14px;margin-bottom:25px}
-.kpis{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
- gap:16px;margin-bottom:30px
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
 }
-.card{
- background:#15191c;border:1px solid #39332a;
- border-radius:12px;padding:20px
+
+h1 {
+    color: #d6ad55;
+    font-size: 28px;
 }
-.card small{color:#aaa;font-size:12px}
-.card h2{color:#e4c477;font-size:27px;margin-top:10px}
-.card p{color:#999;font-size:12px;margin-top:5px}
-.charts{
- display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
- gap:18px
+
+.subtitle {
+    color: #aaa;
+    margin-top: 8px;
+    font-size: 13px;
 }
-.chart-card{min-height:330px}
-.chart-card h3{font-size:16px;margin-bottom:18px}
-.chart-wrap{height:255px;position:relative}
-.footer{
- text-align:center;color:#777;font-size:12px;margin-top:30px
+
+.tag {
+    border: 1px solid #d6ad55;
+    color: #d6ad55;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 12px;
 }
-@media(max-width:650px){
- body{padding:15px}
- .charts{grid-template-columns:1fr}
- .chart-card{min-height:310px}
- h1{font-size:23px}
+
+h2 {
+    color: #d6ad55;
+    font-size: 19px;
+    margin: 28px 0 16px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+}
+
+.card, .panel {
+    background: #1c1c1c;
+    border: 1px solid #38332a;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.card {
+    border-top: 3px solid #d6ad55;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 13px;
+}
+
+.card h2 {
+    font-size: 27px;
+    color: #e4c477;
+    margin: 14px 0 6px;
+}
+
+.card small {
+    color: #888;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.panel h3 {
+    font-size: 15px;
+    margin-bottom: 18px;
+    color: #e4c477;
+}
+
+.chart {
+    height: 260px;
+    position: relative;
+}
+
+.note {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.status {
+    color: #d6ad55;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    margin: 35px 0 10px;
+    font-size: 12px;
+}
+
+@media(max-width:600px) {
+    body {
+        padding: 14px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .chart {
+        height: 230px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
- <div class="logo">FITCLUB</div>
- <p>HEALTH & FITNESS | BUSINESS INTELLIGENCE</p>
-</div>
+<header>
+    <div>
+        <h1>FITCLUB ANALYTICS</h1>
+        <p class="subtitle">
+            Health & Fitness Club Membership | CRM / MIS
+        </p>
+    </div>
 
-<div class="section-title">BUSINESS PERFORMANCE</div>
-<h1>Analytics Dashboard</h1>
-<p class="subtitle">Membership, revenue, payments and member insights</p>
+    <span class="tag">PREMIUM DASHBOARD</span>
+</header>
 
-<div class="kpis">
- <div class="card">
-  <small>Total Members</small>
-  <h2>1,000</h2>
-  <p>Registered members</p>
- </div>
- <div class="card">
-  <small>Total Paid Revenue</small>
-  <h2>₹39.86 L</h2>
-  <p>1,000 paid transactions</p>
- </div>
- <div class="card">
-  <small>Premium Members</small>
-  <h2>493</h2>
-  <p>49.3% of members</p>
- </div>
- <div class="card">
-  <small>Standard Members</small>
-  <h2>507</h2>
-  <p>50.7% of members</p>
- </div>
- <div class="card">
-  <small>Clean Memberships</small>
-  <h2>1,000</h2>
-  <p>Verified membership records</p>
- </div>
-</div>
+<!-- MEMBERSHIP OVERVIEW -->
 
-<div class="charts">
+<h2>Membership Overview</h2>
 
- <div class="card chart-card">
-  <h3>Revenue by Membership Plan</h3>
-  <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
- </div>
+<section class="cards">
 
- <div class="card chart-card">
-  <h3>Membership Distribution</h3>
-  <div class="chart-wrap"><canvas id="membershipChart"></canvas></div>
- </div>
+    <div class="card">
+        <p>Total Members</p>
+        <h2>1,000</h2>
+        <small>Unique members</small>
+    </div>
 
- <div class="card chart-card">
-  <h3>Payment Method Analysis</h3>
-  <div class="chart-wrap"><canvas id="paymentChart"></canvas></div>
- </div>
+    <div class="card">
+        <p>Total Paid Amount</p>
+        <h2>₹39.86 L</h2>
+        <small>Verified paid payments</small>
+    </div>
 
- <div class="card chart-card">
-  <h3>Gender Distribution</h3>
-  <div class="chart-wrap"><canvas id="genderChart"></canvas></div>
- </div>
+    <div class="card">
+        <p>Premium Members</p>
+        <h2>493</h2>
+        <small>49.3% of members</small>
+    </div>
 
- <div class="card chart-card">
-  <h3>Member Engagement</h3>
-  <div class="chart-wrap"><canvas id="engagementChart"></canvas></div>
- </div>
+    <div class="card">
+        <p>Standard Members</p>
+        <h2>507</h2>
+        <small>50.7% of members</small>
+    </div>
 
- <div class="card chart-card">
-  <h3>Churn Risk Analysis</h3>
-  <div class="chart-wrap"><canvas id="churnChart"></canvas></div>
- </div>
+    <div class="card">
+        <p>Clean Memberships</p>
+        <h2>1,000</h2>
+        <small>One record per member</small>
+    </div>
 
-</div>
+</section>
 
-<div class="footer">
- FitClub Analytics | Health & Fitness Club Membership Platform
-</div>
+<!-- REVENUE ANALYSIS -->
+
+<h2>Revenue & Membership Analysis</h2>
+
+<section class="grid">
+
+    <div class="panel">
+        <h3>Revenue by Membership Plan</h3>
+        <div class="chart">
+            <canvas id="revenue"></canvas>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Members by Membership Plan</h3>
+        <div class="chart">
+            <canvas id="members"></canvas>
+        </div>
+    </div>
+
+</section>
+
+<!-- PAYMENT AND MEMBER ANALYSIS -->
+
+<h2>Payment, Gender & Member Analysis</h2>
+
+<section class="grid">
+
+    <div class="panel">
+        <h3>Payment Method Distribution</h3>
+        <div class="chart">
+            <canvas id="paymentMethods"></canvas>
+        </div>
+        <p class="status">1,000 verified paid payments</p>
+        <p class="note">Card: 334 | Cash: 333 | UPI: 333</p>
+    </div>
+
+    <div class="panel">
+        <h3>Gender Distribution</h3>
+        <div class="chart">
+            <canvas id="genderChart"></canvas>
+        </div>
+        <p class="status">1,000 verified members</p>
+        <p class="note">Female: 503 | Male: 497</p>
+    </div>
+
+    <div class="panel">
+        <h3>Member Engagement Analysis</h3>
+        <div class="chart">
+            <canvas id="engagementChart"></canvas>
+        </div>
+        <p class="status">586 Moderate | 220 High | 194 Low</p>
+    </div>
+
+    <div class="panel">
+        <h3>Churn Risk Analysis</h3>
+        <div class="chart">
+            <canvas id="churnChart"></canvas>
+        </div>
+        <p class="status">194 High | 272 Medium | 532 Low Risk</p>
+    </div>
+
+</section>
+
+<footer>
+    FitClub Membership Analytics | Academic Project Dashboard
+</footer>
+
+<!-- CHART JAVASCRIPT -->
 
 <script>
-Chart.defaults.color="#cccccc";
-Chart.defaults.font.family="Arial";
 
-const commonOptions={
- responsive:true,
- maintainAspectRatio:false,
- plugins:{
-  legend:{
-   position:"bottom",
-   labels:{padding:18,usePointStyle:true}
-  }
- }
+Chart.defaults.color = "#ccc";
+Chart.defaults.font.family = "Arial";
+
+const common = {
+    responsive: true,
+    maintainAspectRatio: false
 };
 
-new Chart(document.getElementById("revenueChart"),{
- type:"bar",
- data:{
-  labels:["Premium","Standard"],
-  datasets:[{
-   label:"Revenue (₹)",
-   data:[2465000,1521000],
-   backgroundColor:["#d6ad55","#16b8a6"],
-   borderRadius:7
-  }]
- },
- options:{
-  ...commonOptions,
-  scales:{
-   y:{
-    beginAtZero:true,
-    ticks:{callback:v=>"₹"+(v/100000).toFixed(1)+"L"},
-    grid:{color:"#292d30"}
-   },
-   x:{grid:{display:false}}
-  }
- }
+// REVENUE BY MEMBERSHIP PLAN
+
+new Chart(document.getElementById("revenue"), {
+    type: "bar",
+
+    data: {
+        labels: ["Premium", "Standard"],
+
+        datasets: [{
+            label: "Revenue (₹)",
+            data: [2465000, 1521000],
+
+            backgroundColor: [
+                "#d6ad55",
+                "#8b713c"
+            ]
+        }]
+    },
+
+    options: {
+        ...common,
+
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
 });
 
-function createDonut(id,labels,data,colors){
- new Chart(document.getElementById(id),{
-  type:"doughnut",
-  data:{
-   labels:labels,
-   datasets:[{
-    data:data,
-    backgroundColor:colors,
-    borderColor:"#15191c",
-    borderWidth:3,
-    hoverOffset:8
-   }]
-  },
-  options:{
-   ...commonOptions,
-   cutout:"63%"
-  }
- });
-}
+// MEMBERS BY MEMBERSHIP PLAN
 
-createDonut(
- "membershipChart",
- ["Premium","Standard"],
- [493,507],
- ["#d6ad55","#16b8a6"]
-);
+new Chart(document.getElementById("members"), {
+    type: "doughnut",
 
-createDonut(
- "paymentChart",
- ["Card","Cash","UPI"],
- [334,333,333],
- ["#d6ad55","#16b8a6","#9275d8"]
-);
+    data: {
+        labels: ["Premium", "Standard"],
 
-createDonut(
- "genderChart",
- ["Female","Male"],
- [503,497],
- ["#d6ad55","#4e91dc"]
-);
+        datasets: [{
+            data: [493, 507],
 
-createDonut(
- "engagementChart",
- ["Moderate","High","Low"],
- [586,220,194],
- ["#16b8a6","#d6ad55","#9275d8"]
-);
+            backgroundColor: [
+                "#d6ad55",
+                "#8b713c"
+            ],
 
-createDonut(
- "churnChart",
- ["High Risk","Medium Risk","Low Risk"],
- [194,272,532],
- ["#e47772","#d6ad55","#16b8a6"]
-);
+            borderColor: "#1c1c1c"
+        }]
+    },
+
+    options: {
+        ...common,
+
+        plugins: {
+            legend: {
+                position: "bottom"
+            }
+        }
+    }
+});
+
+// PAYMENT METHOD DISTRIBUTION
+
+new Chart(document.getElementById("paymentMethods"), {
+    type: "doughnut",
+
+    data: {
+        labels: ["Card", "Cash", "UPI"],
+
+        datasets: [{
+            data: [334, 333, 333],
+
+            backgroundColor: [
+                "#d6ad55",
+                "#8b713c",
+                "#b9a078"
+            ],
+
+            borderColor: "#1c1c1c",
+            borderWidth: 3
+        }]
+    },
+
+    options: {
+        ...common,
+
+        plugins: {
+            legend: {
+                position: "bottom"
+            }
+        }
+    }
+});
+
+// GENDER DISTRIBUTION
+
+new Chart(document.getElementById("genderChart"), {
+    type: "doughnut",
+
+    data: {
+        labels: ["Female", "Male"],
+
+        datasets: [{
+            data: [503, 497],
+
+            backgroundColor: [
+                "#d6ad55",
+                "#8b713c"
+            ],
+
+            borderColor: "#1c1c1c",
+            borderWidth: 3
+        }]
+    },
+
+    options: {
+        ...common,
+
+        plugins: {
+            legend: {
+                position: "bottom"
+            }
+        }
+    }
+});
+
+// MEMBER ENGAGEMENT ANALYSIS
+
+new Chart(document.getElementById("engagementChart"), {
+    type: "doughnut",
+
+    data: {
+        labels: ["Moderate", "High", "Low"],
+
+        datasets: [{
+            data: [586, 220, 194],
+
+            backgroundColor: [
+                "#d6ad55",
+                "#8b713c",
+                "#b9a078"
+            ],
+
+            borderColor: "#1c1c1c",
+            borderWidth: 3
+        }]
+    },
+
+    options: {
+        ...common,
+
+        plugins: {
+            legend: {
+                position: "bottom"
+            }
+        }
+    }
+});
+
+// CHURN RISK ANALYSIS
+
+new Chart(document.getElementById("churnChart"), {
+    type: "doughnut",
+
+    data: {
+        labels: ["High Risk", "Medium Risk", "Low Risk"],
+
+        datasets: [{
+            data: [194, 272, 532],
+
+            backgroundColor: [
+                "#c65d4b",
+                "#d6ad55",
+                "#8b713c"
+            ],
+
+            borderColor: "#1c1c1c",
+            borderWidth: 3
+        }]
+    },
+
+    options: {
+        ...common,
+
+        plugins: {
+            legend: {
+                position: "bottom"
+            }
+        }
+    }
+});
+
 </script>
 
 </body>
