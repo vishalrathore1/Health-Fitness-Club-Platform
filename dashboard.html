@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitClub | Analytics Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#101010;color:#fff;padding:25px}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:30px}
+h1{color:#d6ad55;font-size:27px}
+.subtitle{color:#aaa;margin-top:8px;font-size:13px}
+.tag{border:1px solid #d6ad55;color:#d6ad55;padding:9px 15px;border-radius:20px;font-size:12px}
+h2{font-size:18px;margin:25px 0 15px;color:#d6ad55}
+.filter{background:#202020;color:#fff;border:1px solid #555;padding:10px;border-radius:7px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px}
+.card,.panel{background:#1c1c1c;border:1px solid #38332a;border-radius:12px;padding:20px}
+.card{border-top:3px solid #d6ad55}
+.card p{color:#aaa;font-size:13px}
+.card h2{font-size:27px;color:#e4c477;margin:13px 0 5px}
+.card small{color:#888}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.panel h3{font-size:15px;margin-bottom:18px;color:#eee}
+.chart{height:260px;position:relative}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+th,td{text-align:left;padding:13px;border-bottom:1px solid #333}
+th{color:#d6ad55}
+td{color:#ddd}
+.table-wrap{overflow-x:auto}
+.risk{color:#ff7373;font-weight:bold}
+footer{text-align:center;color:#777;margin:30px 0 10px;font-size:12px}
+@media(max-width:600px){body{padding:14px}h1{font-size:21px}.chart{height:230px}}
+</style>
+</head>
+<body>
+
+<header>
+ <div>
+  <h1>FITCLUB ANALYTICS</h1>
+  <p class="subtitle">Health & Fitness Club Membership | CRM / MIS Dashboard</p>
+ </div>
+ <span class="tag">PREMIUM DASHBOARD</span>
+</header>
+
+<h2>Membership Overview</h2>
+<section class="cards">
+ <div class="card"><p>Total Members</p><h2>1,000</h2><small>All members</small></div>
+ <div class="card"><p>Total Revenue</p><h2>₹3.99M</h2><small>Recorded revenue</small></div>
+ <div class="card"><p>Premium Members</p><h2>493</h2><small>49.3% of members</small></div>
+ <div class="card"><p>Standard Members</p><h2>507</h2><small>50.7% of members</small></div>
+ <div class="card"><p>High Risk Members</p><h2>194</h2><small>Retention attention needed</small></div>
+</section>
+
+<h2>Revenue & Membership Analysis</h2>
+<section class="grid">
+ <div class="panel"><h3>Revenue by Membership Plan</h3><div class="chart"><canvas id="revenue"></canvas></div></div>
+ <div class="panel"><h3>Revenue by Payment Method</h3><div class="chart"><canvas id="payment"></canvas></div></div>
+ <div class="panel"><h3>Gender Distribution</h3><div class="chart"><canvas id="gender"></canvas></div></div>
+</section>
+
+<h2>Member Engagement & Retention</h2>
+<section class="grid">
+ <div class="panel"><h3>Member Engagement Analysis</h3><div class="chart"><canvas id="engagement"></canvas></div></div>
+ <div class="panel"><h3>Churn Risk Distribution</h3><div class="chart"><canvas id="churn"></canvas></div></div>
+ <div class="panel"><h3>Members by Plan</h3><div class="chart"><canvas id="plans"></canvas></div></div>
+</section>
+
+<h2>High Risk Member Details</h2>
+<div class="panel">
+ <div class="table-wrap">
+ <table>
+ <thead><tr><th>Member ID</th><th>Plan</th><th>Engagement</th><th>Churn Risk</th></tr></thead>
+ <tbody>
+ <tr><td>3</td><td>Premium</td><td>Low</td><td class="risk">High Risk</td></tr>
+ <tr><td>10</td><td>Premium</td><td>Low</td><td class="risk">High Risk</td></tr>
+ <tr><td>15</td><td>Premium</td><td>Low</td><td class="risk">High Risk</td></tr>
+ <tr><td>25</td><td>Standard</td><td>Low</td><td class="risk">High Risk</td></tr>
+ <tr><td>29</td><td>Premium</td><td>Low</td><td class="risk">High Risk</td></tr>
+ <tr><td>39</td><td>Standard</td><td>Low</td><td class="risk">High Risk</td></tr>
+ </tbody>
+ </table>
+ </div>
+</div>
+
+<footer>FitClub Membership Analytics | Academic Project Dashboard</footer>
+
+<script>
+Chart.defaults.color="#ccc";
+Chart.defaults.font.family="Arial";
+const gold="#d6ad55";
+const common={responsive:true,maintainAspectRatio:false};
+
+new Chart(document.getElementById("revenue"),{
+ type:"bar",data:{labels:["Premium","Standard"],datasets:[{label:"Revenue",data:[2470000,1520000],backgroundColor:["#d6ad55","#8b713c"]}]},
+ options:{...common,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
+});
+new Chart(document.getElementById("payment"),{
+ type:"doughnut",data:{labels:["Card","UPI","Cash"],datasets:[{data:[1.34,1.33,1.32],backgroundColor:["#d6ad55","#a88745","#6b552f"],borderColor:"#1c1c1c"}]},
+ options:{...common,plugins:{legend:{position:"bottom"}}}
+});
+new Chart(document.getElementById("gender"),{
+ type:"doughnut",data:{labels:["Female","Male"],datasets:[{data:[503,497],backgroundColor:["#d6ad55","#796039"],borderColor:"#1c1c1c"}]},
+ options:{...common,plugins:{legend:{position:"bottom"}}}
+});
+new Chart(document.getElementById("engagement"),{
+ type:"bar",data:{labels:["Moderate","High","Low"],datasets:[{data:[586,220,194],backgroundColor:["#d6ad55","#9a793e","#6b552f"]}]},
+ options:{...common,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
+});
+new Chart(document.getElementById("churn"),{
+ type:"doughnut",data:{labels:["Low Risk","Medium Risk","High Risk"],datasets:[{data:[532,274,194],backgroundColor:["#d6ad55","#a88745","#9b4c42"],borderColor:"#1c1c1c"}]},
+ options:{...common,plugins:{legend:{position:"bottom"}}}
+});
+new Chart(document.getElementById("plans"),{
+ type:"bar",data:{labels:["Premium","Standard"],datasets:[{data:[493,507],backgroundColor:["#d6ad55","#8b713c"]}]},
+ options:{...common,indexAxis:"y",plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}
+});
+</script>
+</body>
+</html>
