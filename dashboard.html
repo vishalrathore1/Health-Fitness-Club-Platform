@@ -41,31 +41,11 @@ footer{text-align:center;color:#777;margin:35px 0 10px;font-size:12px}
 
 <h2>Membership Overview</h2>
 <section class="cards">
- <div class="card">
-  <p>Total Members</p>
-  <h2>1,000</h2>
-  <small>Unique members</small>
- </div>
- <div class="card">
-  <p>Total Paid Amount</p>
-  <h2>₹39.86 L</h2>
-  <small>Calculated from cleaned payments</small>
- </div>
- <div class="card">
-  <p>Premium Members</p>
-  <h2>493</h2>
-  <small>49.3% of members</small>
- </div>
- <div class="card">
-  <p>Standard Members</p>
-  <h2>507</h2>
-  <small>50.7% of members</small>
- </div>
- <div class="card">
-  <p>Clean Memberships</p>
-  <h2>1,000</h2>
-  <small>One record per member</small>
- </div>
+ <div class="card"><p>Total Members</p><h2>1,000</h2><small>Unique members</small></div>
+ <div class="card"><p>Total Paid Amount</p><h2>₹39.86 L</h2><small>Verified paid payments</small></div>
+ <div class="card"><p>Premium Members</p><h2>493</h2><small>49.3% of members</small></div>
+ <div class="card"><p>Standard Members</p><h2>507</h2><small>50.7% of members</small></div>
+ <div class="card"><p>Clean Memberships</p><h2>1,000</h2><small>One record per member</small></div>
 </section>
 
 <h2>Revenue & Membership Analysis</h2>
@@ -80,13 +60,24 @@ footer{text-align:center;color:#777;margin:35px 0 10px;font-size:12px}
  </div>
 </section>
 
-<h2>Data Analysis Status</h2>
+<h2>Payment Analysis</h2>
 <section class="grid">
  <div class="panel">
   <h3>Payment Method Distribution</h3>
-  <p class="note">Payment records have been cleaned. A verified payment-method summary is pending.</p>
-  <p class="status">Awaiting verified breakdown</p>
+  <div class="chart"><canvas id="paymentMethods"></canvas></div>
+  <p class="status">Verified: 1,000 paid payment records</p>
  </div>
+ <div class="panel">
+  <h3>Payment Summary</h3>
+  <p class="note">Card: 334 payments — ₹13.4 L</p>
+  <p class="note">Cash: 333 payments — ₹13.2 L</p>
+  <p class="note">UPI: 333 payments — approximately ₹13.3 L</p>
+  <p class="status">Total paid amount: ₹39.86 L</p>
+ </div>
+</section>
+
+<h2>Data Analysis Status</h2>
+<section class="grid">
  <div class="panel">
   <h3>Gender Distribution</h3>
   <p class="note">Gender breakdown will be displayed after validating the Members table.</p>
@@ -110,10 +101,7 @@ footer{text-align:center;color:#777;margin:35px 0 10px;font-size:12px}
 Chart.defaults.color="#ccc";
 Chart.defaults.font.family="Arial";
 
-const common={
- responsive:true,
- maintainAspectRatio:false
-};
+const common={responsive:true,maintainAspectRatio:false};
 
 new Chart(document.getElementById("revenue"),{
  type:"bar",
@@ -142,9 +130,33 @@ new Chart(document.getElementById("members"),{
    borderColor:"#1c1c1c"
   }]
  },
+ options:{...common,plugins:{legend:{position:"bottom"}}}
+});
+
+new Chart(document.getElementById("paymentMethods"),{
+ type:"doughnut",
+ data:{
+  labels:["Card","Cash","UPI"],
+  datasets:[{
+   label:"Number of Payments",
+   data:[334,333,333],
+   backgroundColor:["#d6ad55","#8b713c","#b9a078"],
+   borderColor:"#1c1c1c",
+   borderWidth:3
+  }]
+ },
  options:{
   ...common,
-  plugins:{legend:{position:"bottom"}}
+  plugins:{
+   legend:{position:"bottom"},
+   tooltip:{
+    callbacks:{
+     label:function(context){
+      return context.label+": "+context.raw+" payments";
+     }
+    }
+   }
+  }
  }
 });
 </script>
