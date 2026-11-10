@@ -5,8 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FitClub | Premium Fitness Analytics</title>
-
+<title>FitClub | Health & Fitness Analytics</title>
 <meta name="description" content="Health and Fitness Club Membership Platform - Business Intelligence and Analytics Project">
 
 <style>
@@ -26,8 +25,6 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
 }
-
-/* NAVIGATION */
 
 .navbar {
     display: flex;
@@ -66,11 +63,9 @@ body {
     color: #d6ad55;
 }
 
-/* HERO SECTION */
-
 .hero {
     text-align: center;
-    padding: 100px 20px;
+    padding: 110px 20px;
     background: radial-gradient(ellipse at top, #302719, #090b0d 70%);
 }
 
@@ -107,15 +102,11 @@ body {
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
-    border: none;
-    cursor: pointer;
 }
 
 .btn:hover {
     background: #f0cc79;
 }
-
-/* COMMON SECTION */
 
 section {
     padding: 75px 6%;
@@ -142,7 +133,7 @@ section {
     margin-top: 10px;
 }
 
-/* DASHBOARD SECTION */
+/* DASHBOARD */
 
 .dashboard-section {
     background: #0d0f11;
@@ -165,7 +156,7 @@ section {
     background: #101010;
 }
 
-/* ABOUT SECTION */
+/* ABOUT */
 
 .about-section {
     background: #101214;
@@ -178,7 +169,7 @@ section {
     color: #aaa;
 }
 
-/* FEATURES SECTION */
+/* FEATURES */
 
 .features-grid {
     display: grid;
@@ -209,7 +200,7 @@ section {
     font-weight: bold;
 }
 
-/* TECHNOLOGY SECTION */
+/* TECHNOLOGY */
 
 .tech-section {
     background: #0d0f11;
@@ -230,11 +221,35 @@ section {
     border-radius: 25px;
 }
 
+/* SOCIAL LINKS */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #e4c477;
+    border: 1px solid #66532f;
+    padding: 10px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background: #d6ad55;
+    color: #101010;
+}
+
 /* FOOTER */
 
 footer {
     text-align: center;
-    padding: 30px 15px;
+    padding: 35px 15px;
     background: #08090a;
     color: #888;
     border-top: 1px solid #38332a;
@@ -245,10 +260,7 @@ footer span {
     color: #d6ad55;
 }
 
-/* RESPONSIVE DESIGN */
-
 @media(max-width:700px) {
-
     .navbar {
         justify-content: center;
     }
@@ -282,7 +294,6 @@ footer span {
 <!-- NAVIGATION -->
 
 <nav class="navbar">
-
     <div class="logo">FITCLUB</div>
 
     <div class="nav-links">
@@ -292,7 +303,6 @@ footer span {
         <a href="#features">Features</a>
         <a href="#technology">Technology</a>
     </div>
-
 </nav>
 
 <!-- HERO SECTION -->
@@ -320,30 +330,24 @@ footer span {
 
 </header>
 
-<!-- DASHBOARD ON SAME PAGE -->
+<!-- DASHBOARD SECTION -->
 
 <section class="dashboard-section" id="dashboard">
 
     <div class="section-heading">
-
         <span>BUSINESS INTELLIGENCE</span>
-
         <h2>FitClub Analytics Dashboard</h2>
-
         <p>
             Membership, revenue and business performance insights.
         </p>
-
     </div>
 
     <div class="dashboard-frame">
-
         <iframe
             src="./dashboard.html"
             title="FitClub Analytics Dashboard"
             loading="lazy">
         </iframe>
-
     </div>
 
 </section>
@@ -353,15 +357,11 @@ footer span {
 <section class="about-section" id="about">
 
     <div class="section-heading">
-
         <span>ABOUT THE PROJECT</span>
-
         <h2>Health & Fitness Club Membership Platform</h2>
-
     </div>
 
     <div class="about-text">
-
         <p>
             This project focuses on managing and analyzing
             health and fitness club membership operations
@@ -377,7 +377,6 @@ footer span {
             into revenue, membership distribution, engagement
             and churn risk to support business decisions.
         </p>
-
     </div>
 
 </section>
@@ -387,15 +386,11 @@ footer span {
 <section id="features">
 
     <div class="section-heading">
-
         <span>PROJECT CAPABILITIES</span>
-
         <h2>Key Analytics Features</h2>
-
         <p>
             Important business insights available in the project.
         </p>
-
     </div>
 
     <div class="features-grid">
@@ -463,15 +458,11 @@ footer span {
 <section class="tech-section" id="technology">
 
     <div class="section-heading">
-
         <span>PROJECT TECHNOLOGY</span>
-
         <h2>Technology Stack</h2>
-
     </div>
 
     <div class="tech-list">
-
         <div class="tech-item">MySQL</div>
         <div class="tech-item">HTML5</div>
         <div class="tech-item">CSS3</div>
@@ -479,7 +470,36 @@ footer span {
         <div class="tech-item">Chart.js</div>
         <div class="tech-item">CRM / MIS</div>
         <div class="tech-item">GitHub Pages</div>
+    </div>
 
+</section>
+
+<!-- GITHUB AND LINKEDIN -->
+
+<section class="social-section" id="social">
+
+    <div class="section-heading">
+        <span>CONNECT WITH ME</span>
+        <h2>Explore My Work</h2>
+        <p>
+            Connect with me and explore my projects and professional journey.
+        </p>
+
+        <div class="social-links">
+
+            <a href="https://github.com/vishalrathore1"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub
+            </a>
+
+            <a href="https://www.linkedin.com/in/yourprofile"
+               target="_blank"
+               rel="noopener noreferrer">
+                LinkedIn
+            </a>
+
+        </div>
     </div>
 
 </section>
@@ -495,6 +515,10 @@ footer span {
 
     <p style="margin-top:8px;">
         Academic Project | Business Intelligence & Analytics
+    </p>
+
+    <p style="margin-top:8px;">
+        Built with MySQL, HTML, CSS, JavaScript and Chart.js
     </p>
 
 </footer>
