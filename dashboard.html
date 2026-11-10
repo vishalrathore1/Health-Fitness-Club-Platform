@@ -5,9 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FitClub | Health & Fitness Analytics</title>
+<title>FitClub | Premium Fitness Analytics</title>
 
-<meta name="description" content="Health and Fitness Club Membership Platform with business intelligence, membership analytics, revenue analysis and churn risk insights.">
+<meta name="description" content="Health and Fitness Club Membership Platform - Business Intelligence and Analytics Project">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 * {
@@ -16,26 +18,25 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     background: #090b0d;
-    color: #ffffff;
+    color: #fff;
     font-family: Arial, sans-serif;
     line-height: 1.6;
 }
-
-/* NAVIGATION */
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 6%;
+    padding: 20px 6%;
     background: #101214;
-    border-bottom: 1px solid #30291d;
+    border-bottom: 1px solid #38332a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     flex-wrap: wrap;
     gap: 15px;
 }
@@ -49,7 +50,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 22px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
@@ -57,288 +58,233 @@ body {
     color: #ddd;
     text-decoration: none;
     font-size: 14px;
-    transition: 0.3s;
 }
 
-.nav-links a:hover {
-    color: #d6ad55;
-}
-
-/* HERO */
+.nav-links a:hover { color: #d6ad55; }
 
 .hero {
     text-align: center;
-    padding: 100px 20px 85px;
-    background: radial-gradient(
-        ellipse at top,
-        #252017 0%,
-        #090b0d 65%
-    );
+    padding: 100px 20px;
+    background: radial-gradient(ellipse at top, #302719, #090b0d 70%);
 }
 
 .hero-label {
-    color: #d6ad55;
-    font-size: 13px;
-    letter-spacing: 5px;
-    font-weight: bold;
-}
-
-.hero h1 {
-    font-size: clamp(35px, 6vw, 65px);
-    margin: 25px 0;
-    line-height: 1.2;
-}
-
-.hero h1 span {
-    color: #d6ad55;
-}
-
-.hero p {
-    color: #aaa;
-    max-width: 750px;
-    margin: auto;
-    font-size: 18px;
-}
-
-.hero-button,
-.dashboard-button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 14px 28px;
-    background: #d6ad55;
-    color: #101010;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-.hero-button:hover,
-.dashboard-button:hover {
-    background: #f0cc79;
-    transform: translateY(-2px);
-}
-
-/* COMMON SECTIONS */
-
-section {
-    padding: 75px 6%;
-}
-
-.section-heading {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.section-heading span {
     color: #d6ad55;
     letter-spacing: 4px;
     font-size: 12px;
     font-weight: bold;
 }
 
+.hero h1 {
+    font-size: clamp(36px, 6vw, 65px);
+    line-height: 1.2;
+    margin: 25px 0;
+}
+
+.hero h1 span { color: #d6ad55; }
+
+.hero p {
+    color: #aaa;
+    max-width: 750px;
+    margin: auto;
+    font-size: 17px;
+}
+
+.btn {
+    display: inline-block;
+    background: #d6ad55;
+    color: #101010;
+    padding: 13px 26px;
+    margin-top: 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover { background: #f0cc79; }
+
+section { padding: 75px 6%; }
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.section-heading span {
+    color: #d6ad55;
+    letter-spacing: 4px;
+    font-size: 12px;
+}
+
 .section-heading h2 {
-    font-size: 34px;
-    margin-top: 12px;
+    font-size: 32px;
+    margin-top: 10px;
 }
 
 .section-heading p {
     color: #999;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
-/* DASHBOARD */
+.dashboard-section { background: #0d0f11; }
 
-.dashboard-section {
-    background: #0d0f11;
-}
-
-.dashboard-container {
-    width: 100%;
+.dashboard-frame {
     max-width: 1500px;
+    width: 100%;
     margin: auto;
     border: 1px solid #d6ad55;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
-    background: #101010;
-    box-shadow: 0 10px 40px rgba(214,173,85,0.08);
 }
 
-.dashboard-container iframe {
+.dashboard-frame iframe {
     width: 100%;
-    height: 1050px;
+    height: 1600px;
     display: block;
     border: none;
     background: #101010;
 }
 
-.dashboard-action {
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* ABOUT */
-
-.about-section {
-    background: #101214;
-}
+.about-section { background: #101214; }
 
 .about-text {
     max-width: 900px;
-    margin: auto;
     text-align: center;
+    margin: auto;
     color: #aaa;
-    font-size: 16px;
 }
-
-/* FEATURES */
 
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 22px;
-    margin-top: 40px;
+    gap: 20px;
 }
 
 .feature-card {
     background: #191c1f;
     border: 1px solid #38332a;
     border-radius: 12px;
-    padding: 28px;
-    transition: 0.3s;
-}
-
-.feature-card:hover {
-    border-color: #d6ad55;
-    transform: translateY(-5px);
-}
-
-.feature-card .number {
-    color: #d6ad55;
-    font-size: 28px;
-    font-weight: bold;
+    padding: 25px;
 }
 
 .feature-card h3 {
-    margin: 15px 0 10px;
     color: #e4c477;
-    font-size: 18px;
+    margin: 12px 0;
 }
 
 .feature-card p {
-    color: #999;
+    color: #aaa;
     font-size: 14px;
 }
 
-/* TECHNOLOGY */
-
-.tech-section {
-    background: #0d0f11;
+.feature-number {
+    color: #d6ad55;
+    font-size: 25px;
+    font-weight: bold;
 }
+
+.tech-section { background: #0d0f11; }
 
 .tech-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: 30px;
 }
 
 .tech-item {
     border: 1px solid #66532f;
-    background: #191817;
     color: #e4c477;
+    background: #191817;
     padding: 12px 22px;
     border-radius: 25px;
+}
+
+.contact-section { background: #101214; }
+
+.contact-form {
+    max-width: 650px;
+    margin: auto;
+    padding: 30px;
+    background: #191c1f;
+    border: 1px solid #66532f;
+    border-radius: 14px;
+}
+
+.contact-form label {
+    display: block;
+    margin: 15px 0 7px;
+    color: #e4c477;
     font-size: 14px;
 }
 
-/* CONTACT */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 13px;
+    background: #101010;
+    color: white;
+    border: 1px solid #484033;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
 
-.contact-section {
-    background: #101214;
+.contact-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 1px solid #d6ad55;
+}
+
+.contact-form button {
+    width: 100%;
+    margin-top: 22px;
+    font-size: 15px;
+}
+
+.form-note {
     text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-top: 15px;
 }
-
-.contact-card {
-    max-width: 650px;
-    margin: auto;
-    padding: 35px 25px;
-    background: #191c1f;
-    border: 1px solid #66532f;
-    border-radius: 15px;
-}
-
-.contact-card p {
-    color: #aaa;
-    margin-bottom: 12px;
-}
-
-.email-address {
-    display: block;
-    color: #e4c477;
-    font-size: 18px;
-    text-decoration: none;
-    margin: 18px 0;
-    overflow-wrap: anywhere;
-}
-
-.email-address:hover {
-    color: #ffffff;
-}
-
-/* FOOTER */
 
 footer {
     text-align: center;
     padding: 30px 15px;
     background: #08090a;
-    border-top: 1px solid #30291d;
     color: #888;
+    border-top: 1px solid #38332a;
     font-size: 13px;
 }
 
-footer span {
-    color: #d6ad55;
-}
+footer span { color: #d6ad55; }
 
-/* MOBILE */
-
-@media(max-width: 700px) {
-
+@media(max-width:700px) {
     .navbar {
         justify-content: center;
-        text-align: center;
     }
 
     .nav-links {
         justify-content: center;
-        gap: 14px;
+        gap: 13px;
     }
 
-    .hero {
-        padding: 70px 18px;
-    }
+    .hero { padding: 75px 18px; }
 
-    .hero p {
-        font-size: 15px;
-    }
+    section { padding: 55px 18px; }
 
-    section {
-        padding: 55px 18px;
-    }
+    .section-heading h2 { font-size: 26px; }
 
-    .section-heading h2 {
-        font-size: 27px;
-    }
+    .dashboard-frame iframe { height: 1800px; }
 
-    .dashboard-container iframe {
-        height: 850px;
-    }
-
-    .email-address {
-        font-size: 16px;
-    }
+    .contact-form { padding: 20px; }
 }
 </style>
 </head>
@@ -348,7 +294,6 @@ footer span {
 <!-- NAVIGATION -->
 
 <nav class="navbar">
-
     <div class="logo">FITCLUB</div>
 
     <div class="nav-links">
@@ -359,13 +304,11 @@ footer span {
         <a href="#technology">Technology</a>
         <a href="#contact">Contact</a>
     </div>
-
 </nav>
 
-<!-- HERO SECTION -->
+<!-- HERO -->
 
 <header class="hero" id="home">
-
     <div class="hero-label">
         HEALTH & FITNESS CLUB MEMBERSHIP PLATFORM
     </div>
@@ -378,187 +321,123 @@ footer span {
     <p>
         Explore membership performance, revenue analysis,
         payment methods, member engagement and churn risk
-        through an interactive business intelligence dashboard.
+        through an interactive analytics dashboard.
     </p>
 
-    <a href="#dashboard" class="hero-button">
-        Explore Dashboard
-    </a>
-
+    <a href="#dashboard" class="btn">Explore Dashboard</a>
 </header>
 
-<!-- ANALYTICS DASHBOARD -->
+<!-- DASHBOARD ON SAME PAGE -->
 
 <section class="dashboard-section" id="dashboard">
 
     <div class="section-heading">
-
         <span>BUSINESS INTELLIGENCE</span>
-
-        <h2>Analytics Dashboard</h2>
-
-        <p>
-            Explore FitClub membership and business performance.
-        </p>
-
+        <h2>FitClub Analytics Dashboard</h2>
+        <p>Membership, revenue and business performance insights.</p>
     </div>
 
-    <div class="dashboard-container">
-
+    <div class="dashboard-frame">
         <iframe
             src="https://vishalrathore1.github.io/Health-Fitness-Club-Platform/dashboard.html"
             title="FitClub Analytics Dashboard"
             loading="lazy">
         </iframe>
-
-    </div>
-
-    <div class="dashboard-action">
-
-        <a
-            href="https://vishalrathore1.github.io/Health-Fitness-Club-Platform/dashboard.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="dashboard-button">
-
-            Open Full Dashboard
-
-        </a>
-
     </div>
 
 </section>
 
-<!-- ABOUT PROJECT -->
+<!-- ABOUT -->
 
 <section class="about-section" id="about">
 
     <div class="section-heading">
-
         <span>ABOUT THE PROJECT</span>
-
         <h2>Health & Fitness Club Membership Platform</h2>
-
     </div>
 
     <div class="about-text">
-
         <p>
             This project focuses on managing and analyzing
-            health and fitness club membership operations.
-            It uses a CRM / MIS approach to organize member
-            information, membership plans, payment history
-            and attendance-related business data.
+            health and fitness club membership operations
+            using a CRM / MIS approach.
         </p>
 
         <br>
 
         <p>
-            The analytics dashboard provides insights into
-            membership distribution, revenue performance,
-            payment methods, member engagement and churn risk.
-            These insights support better business decisions
-            and operational planning.
+            The platform organizes member information,
+            membership plans, payment history and attendance
+            data. Its analytical dashboard provides insights
+            into revenue, membership distribution, engagement
+            and churn risk to support business decisions.
         </p>
-
     </div>
 
 </section>
 
-<!-- KEY FEATURES -->
+<!-- FEATURES -->
 
 <section id="features">
 
     <div class="section-heading">
-
         <span>PROJECT CAPABILITIES</span>
-
         <h2>Key Analytics Features</h2>
-
-        <p>
-            Important business metrics available in the dashboard.
-        </p>
-
+        <p>Important business insights available in the project.</p>
     </div>
 
     <div class="features-grid">
 
         <div class="feature-card">
-            <div class="number">01</div>
+            <div class="feature-number">01</div>
             <h3>Membership Analysis</h3>
-            <p>
-                Analyze total members and Premium versus
-                Standard membership distribution.
-            </p>
+            <p>Analyze total members and Premium versus Standard membership distribution.</p>
         </div>
 
         <div class="feature-card">
-            <div class="number">02</div>
+            <div class="feature-number">02</div>
             <h3>Revenue Analysis</h3>
-            <p>
-                Understand paid revenue and compare
-                membership plan contributions.
-            </p>
+            <p>Understand paid revenue and compare membership plan contributions.</p>
         </div>
 
         <div class="feature-card">
-            <div class="number">03</div>
+            <div class="feature-number">03</div>
             <h3>Payment Analysis</h3>
-            <p>
-                Review Card, Cash and UPI payment
-                method distribution.
-            </p>
+            <p>Review Card, Cash and UPI payment method distribution.</p>
         </div>
 
         <div class="feature-card">
-            <div class="number">04</div>
+            <div class="feature-number">04</div>
             <h3>Gender Distribution</h3>
-            <p>
-                Understand the gender composition
-                of club membership.
-            </p>
+            <p>Understand the gender composition of club membership.</p>
         </div>
 
         <div class="feature-card">
-            <div class="number">05</div>
+            <div class="feature-number">05</div>
             <h3>Member Engagement</h3>
-            <p>
-                Review High, Moderate and Low
-                member engagement categories.
-            </p>
+            <p>Review High, Moderate and Low engagement categories.</p>
         </div>
 
         <div class="feature-card">
-            <div class="number">06</div>
+            <div class="feature-number">06</div>
             <h3>Churn Risk Analysis</h3>
-            <p>
-                Identify High, Medium and Low
-                churn risk segments.
-            </p>
+            <p>Identify High, Medium and Low churn risk segments.</p>
         </div>
 
     </div>
 
 </section>
 
-<!-- TECHNOLOGY STACK -->
+<!-- TECHNOLOGY -->
 
 <section class="tech-section" id="technology">
 
     <div class="section-heading">
-
         <span>PROJECT TECHNOLOGY</span>
-
         <h2>Technology Stack</h2>
-
-        <p>
-            Tools and technologies used in the project.
-        </p>
-
     </div>
 
     <div class="tech-list">
-
         <div class="tech-item">MySQL</div>
         <div class="tech-item">HTML5</div>
         <div class="tech-item">CSS3</div>
@@ -566,56 +445,81 @@ footer span {
         <div class="tech-item">Chart.js</div>
         <div class="tech-item">CRM / MIS</div>
         <div class="tech-item">GitHub Pages</div>
-
     </div>
 
 </section>
 
-<!-- CONTACT SECTION -->
+<!-- CONTACT FORM -->
 
 <section class="contact-section" id="contact">
 
     <div class="section-heading">
-
         <span>GET IN TOUCH</span>
-
         <h2>Contact Me</h2>
-
         <p>
-            For project enquiries, collaboration and
-            professional opportunities.
+            Have a question or collaboration idea?
+            Send me a message.
+        </p>
+    </div>
+
+    <form
+        class="contact-form"
+        action="https://formsubmit.co/vishalrathour20041@gmail.com"
+        method="POST">
+
+        <input type="hidden" name="_subject"
+        value="New FitClub Website Enquiry">
+
+        <input type="hidden" name="_captcha" value="true">
+
+        <input type="hidden" name="_template" value="table">
+
+        <label for="name">Your Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            required>
+
+        <label for="email">Your Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address"
+            required>
+
+        <label for="subject">Subject</label>
+        <input
+            type="text"
+            id="subject"
+            name="subject"
+            placeholder="Enter subject"
+            required>
+
+        <label for="message">Your Message</label>
+        <textarea
+            id="message"
+            name="message"
+            placeholder="Write your message here..."
+            required></textarea>
+
+        <button type="submit" class="btn">
+            Send Message
+        </button>
+
+        <p class="form-note">
+            Your message will be sent securely through the contact form.
         </p>
 
-    </div>
-
-    <div class="contact-card">
-
-        <p>Feel free to connect with me through email.</p>
-
-        <a
-            href="mailto:vishalrathour20041@gmail.com?subject=FitClub%20Project%20Enquiry"
-            class="email-address">
-
-            vishalrathour20041@gmail.com
-
-        </a>
-
-        <a
-            href="mailto:vishalrathour20041@gmail.com?subject=FitClub%20Project%20Enquiry"
-            class="dashboard-button">
-
-            ✉ Email Me
-
-        </a>
-
-    </div>
+    </form>
 
 </section>
 
 <!-- FOOTER -->
 
 <footer>
-
     <p>
         <span>FITCLUB ANALYTICS</span>
         | Health & Fitness Club Membership Platform
@@ -624,11 +528,6 @@ footer span {
     <p style="margin-top:8px;">
         Academic Project | Business Intelligence & Analytics
     </p>
-
-    <p style="margin-top:8px;">
-        Contact: vishalrathour20041@gmail.com
-    </p>
-
 </footer>
 
 </body>
