@@ -26,7 +26,7 @@ A data-driven Health & Fitness Club Membership Platform developed using MySQL an
 ## Key Findings
 - 1,000 member records in the analytical dataset
 - 2 membership plans: Premium and Standard
-- ₹40,00,000 modeled revenue
+- ₹3.99M modeled revenue
 - Payment method distribution across Card, Cash and UPI
 
 ## Data Limitations
