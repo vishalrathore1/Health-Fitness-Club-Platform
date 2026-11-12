@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,148 +6,703 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FitClub | Health & Fitness Analytics</title>
 <meta name="description" content="Health and Fitness Club Membership Platform — business intelligence and member analytics project.">
+
 <style>
-:root{--bg:#090b0d;--surface:#101214;--card:#171a1d;--gold:#d6ad55;--gold2:#f0cc79;--text:#f5f5f5;--muted:#a5a5a5;--line:#38332a}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-a{color:inherit;text-decoration:none}
-.navbar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 6%;background:rgba(16,18,20,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
-.logo{color:var(--gold);font-size:25px;font-weight:800;letter-spacing:3px}
-.nav-links{display:flex;align-items:center;gap:25px;flex-wrap:wrap}
-.nav-links a{font-size:15px;color:#ddd;transition:.2s}
-.nav-links a:hover{color:var(--gold)}
-.nav-links .nav-cta{background:var(--gold);color:#111;padding:9px 15px;border-radius:7px;font-weight:700}
-.nav-links .nav-cta:hover{background:var(--gold2);color:#111}
-.hero{text-align:center;padding:110px 20px 90px;background:radial-gradient(ellipse at 50% 0%,#302719 0%,#14110c 28%,var(--bg) 72%)}
-.eyebrow,.section-kicker{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:5px}
-.hero h1{font-size:clamp(36px,6vw,66px);line-height:1.15;margin:22px auto;max-width:900px}
-.hero h1 span{color:var(--gold)}
-.hero p{max-width:760px;margin:0 auto;color:var(--muted);font-size:18px}
-.actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 26px;border-radius:8px;font-weight:700;transition:.2s;border:1px solid var(--gold)}
-.btn-primary{background:var(--gold);color:#101010}
-.btn-primary:hover{background:var(--gold2);transform:translateY(-2px)}
-.btn-outline{color:var(--gold);background:transparent}
-.btn-outline:hover{background:#d6ad5518}
-section{padding:78px 6%}
-.section-heading{text-align:center;margin:0 auto 38px;max-width:760px}
-.section-heading h2{font-size:clamp(26px,4vw,36px);margin-top:10px}
-.section-heading p{color:var(--muted);margin-top:10px}
-.stats-section{padding-top:0;margin-top:-5px}
-.stats-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.stat-card{background:linear-gradient(145deg,#191b1d,#111315);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center}
-.stat-card strong{display:block;color:var(--gold);font-size:clamp(25px,4vw,36px);line-height:1.2}
-.stat-card span{display:block;color:var(--muted);font-size:13px;margin-top:9px}
-.stat-note{max-width:1100px;margin:14px auto 0;color:#858585;font-size:11px;text-align:center}
-.dashboard-section{background:#0d0f11}
-.dashboard-link-card{max-width:900px;margin:auto;border:1px solid var(--line);border-radius:18px;padding:36px 24px;text-align:center;background:linear-gradient(145deg,#191b1d,#101214)}
-.dashboard-link-card h3{font-size:24px;margin-bottom:8px}
-.dashboard-link-card p{color:var(--muted);max-width:620px;margin:0 auto}
-.about-section{background:#101214}
-.about-text{max-width:900px;margin:auto;text-align:center;color:var(--muted)}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;max-width:1200px;margin:auto}
-.feature-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:24px}
-.feature-number{font-size:24px;font-weight:800;color:var(--gold)}
-.feature-card h3{color:#e4c477;margin:10px 0}
-.feature-card p{font-size:14px;color:var(--muted)}
-.tech-section{background:#0d0f11}
-.tech-list{display:flex;justify-content:center;flex-wrap:wrap;gap:13px}
-.tech-item{border:1px solid #66532f;color:#e4c477;background:#191817;padding:11px 20px;border-radius:25px}
-.social-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:24px}
-.social-links a{color:#e4c477;border:1px solid #66532f;padding:10px 22px;border-radius:25px;transition:.2s}
-.social-links a:hover{background:var(--gold);color:#101010}
-footer{text-align:center;padding:32px 15px;background:#08090a;color:#888;border-top:1px solid var(--line);font-size:13px}
-footer span{color:var(--gold)}
-@media(max-width:700px){.navbar{justify-content:center;padding:16px 4%}.nav-links{justify-content:center;gap:12px}.nav-links a{font-size:13px}.hero{padding:78px 18px 65px}.hero p{font-size:16px}section{padding:58px 18px}.stats-grid{grid-template-columns:1fr;max-width:420px}.dashboard-link-card{padding:28px 18px}}
+:root {
+  --bg: #090b0d;
+  --surface: #101214;
+  --card: #171a1d;
+  --gold: #d6ad55;
+  --gold2: #f0cc79;
+  --text: #f5f5f5;
+  --muted: #a5a5a5;
+  --line: #38332a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* NAVIGATION */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 6%;
+  background: rgba(16,18,20,.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  color: var(--gold);
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  font-size: 15px;
+  color: #ddd;
+  transition: .2s;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-links .nav-cta {
+  background: var(--gold);
+  color: #111;
+  padding: 9px 15px;
+  border-radius: 7px;
+  font-weight: 700;
+}
+
+.nav-links .nav-cta:hover {
+  background: var(--gold2);
+  color: #111;
+}
+
+/* HERO SECTION */
+
+.hero {
+  text-align: center;
+  padding: 110px 20px 90px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #302719 0%,
+    #14110c 28%,
+    var(--bg) 72%
+  );
+}
+
+.eyebrow,
+.section-kicker {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 66px);
+  line-height: 1.15;
+  margin: 22px auto;
+  max-width: 900px;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero p {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 15px 26px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: .2s;
+  border: 1px solid var(--gold);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #101010;
+}
+
+.btn-primary:hover {
+  background: var(--gold2);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  color: var(--gold);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: #d6ad5518;
+}
+
+/* COMMON SECTIONS */
+
+section {
+  padding: 78px 6%;
+}
+
+.section-heading {
+  text-align: center;
+  margin: 0 auto 38px;
+  max-width: 760px;
+}
+
+.section-heading h2 {
+  font-size: clamp(26px, 4vw, 36px);
+  margin-top: 10px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* STATISTICS */
+
+.stats-section {
+  padding-top: 0;
+  margin-top: -5px;
+}
+
+.stats-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  background: linear-gradient(145deg, #191b1d, #111315);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+}
+
+.stat-card strong {
+  display: block;
+  color: var(--gold);
+  font-size: clamp(25px, 4vw, 36px);
+  line-height: 1.2;
+}
+
+.stat-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 9px;
+}
+
+.stat-note {
+  max-width: 1100px;
+  margin: 14px auto 0;
+  color: #858585;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* ABOUT */
+
+.about-section {
+  background: #101214;
+}
+
+.about-text {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* FEATURES */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(230px, 1fr)
+  );
+  gap: 18px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 24px;
+}
+
+.feature-number {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.feature-card h3 {
+  color: #e4c477;
+  margin: 10px 0;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* TECHNOLOGY */
+
+.tech-section {
+  background: #0d0f11;
+}
+
+.tech-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.tech-item {
+  border: 1px solid #66532f;
+  color: #e4c477;
+  background: #191817;
+  padding: 11px 20px;
+  border-radius: 25px;
+}
+
+/* SOCIAL LINKS */
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.social-links a {
+  color: #e4c477;
+  border: 1px solid #66532f;
+  padding: 10px 22px;
+  border-radius: 25px;
+  transition: .2s;
+}
+
+.social-links a:hover {
+  background: var(--gold);
+  color: #101010;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 32px 15px;
+  background: #08090a;
+  color: #888;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+
+footer span {
+  color: var(--gold);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width:700px) {
+
+  .navbar {
+    justify-content: center;
+    padding: 16px 4%;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 78px 18px 65px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 58px 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
 </style>
 </head>
+
 <body>
+
+<!-- NAVIGATION -->
+
 <nav class="navbar">
+
   <a class="logo" href="#home">FITCLUB</a>
+
   <div class="nav-links">
+
     <a href="#home">Home</a>
+
     <a href="./dashboard.html">Dashboard</a>
+
     <a href="#about">About</a>
+
     <a href="#features">Features</a>
+
     <a href="#technology">Technology</a>
-    <a class="nav-cta" href="./dashboard.html">Open Dashboard ↗</a>
+
+    <a class="nav-cta" href="./dashboard.html">
+      Open Dashboard ↗
+    </a>
+
   </div>
+
 </nav>
 
+<!-- HERO SECTION -->
+
 <header class="hero" id="home">
-  <div class="eyebrow">HEALTH & FITNESS CLUB MEMBERSHIP PLATFORM</div>
-  <h1>Smart Fitness<br><span>Business Analytics</span></h1>
-  <p>Explore member information, membership plans, engagement and estimated churn insights through an interactive analytics dashboard.</p>
-  <div class="actions">
-    <a class="btn btn-primary" href="./dashboard.html">Explore Live Dashboard →</a>
-    <a class="btn btn-outline" href="#about">Discover the Project</a>
+
+  <div class="eyebrow">
+    HEALTH & FITNESS CLUB MEMBERSHIP PLATFORM
   </div>
+
+  <h1>
+    Smart Fitness<br>
+    <span>Business Analytics</span>
+  </h1>
+
+  <p>
+    Explore member information, membership plans,
+    engagement and estimated churn insights through
+    an interactive analytics dashboard.
+  </p>
+
+  <div class="actions">
+
+    <a class="btn btn-primary" href="./dashboard.html">
+      Explore Live Dashboard →
+    </a>
+
+    <a class="btn btn-outline" href="#about">
+      Discover the Project
+    </a>
+
+  </div>
+
 </header>
 
+<!-- STATISTICS SECTION -->
+
 <section class="stats-section" aria-label="Project data preview">
+
   <div class="stats-grid">
-    <div class="stat-card"><strong>1,000</strong><span>Member Records</span></div>
-    <div class="stat-card"><strong>₹39.86L</strong><span>Modelled Monthly Revenue</span></div>
-    <div class="stat-card"><strong>2</strong><span>Membership Plan Types</span></div>
+
+    <div class="stat-card">
+      <strong>1,000</strong>
+      <span>Member Records</span>
+    </div>
+
+    <div class="stat-card">
+      <strong>₹39.86L</strong>
+      <span>Modelled Monthly Revenue</span>
+    </div>
+
+    <div class="stat-card">
+      <strong>2</strong>
+      <span>Membership Plan Types</span>
+    </div>
+
   </div>
-  <p class="stat-note">Academic project preview. Revenue is modelled using assumed plan fees; it is not verified business revenue.</p>
+
+  <p class="stat-note">
+    Academic project preview. Revenue is modelled using
+    assumed plan fees; it is not verified business revenue.
+  </p>
+
 </section>
 
-<section class="dashboard-section" id="dashboard-preview">
-  <div class="section-heading">
-    <div class="section-kicker">BUSINESS INTELLIGENCE</div>
-    <h2>FitClub Analytics Dashboard</h2>
-    <p>Explore individual members, membership plans, engagement and business performance insights.</p>
-  </div>
-  <div class="dashboard-link-card">
-    <h3>Ready to explore the data?</h3>
-    <p>Open the full interactive dashboard to search member IDs, review member profiles and explore the available analytics.</p>
-    <div class="actions"><a class="btn btn-primary" href="./dashboard.html">Open Full Dashboard →</a></div>
-  </div>
-</section>
+<!-- ABOUT SECTION -->
 
 <section class="about-section" id="about">
-  <div class="section-heading"><div class="section-kicker">ABOUT THE PROJECT</div><h2>Health & Fitness Club Membership Platform</h2></div>
-  <div class="about-text">
-    <p>This project focuses on managing and analyzing health and fitness club membership operations using a CRM / MIS approach.</p>
-    <br>
-    <p>The platform organizes member information, membership plans and fitness activity attributes. Its analytical dashboard presents membership distribution, modelled revenue, engagement categories and estimated churn risk to support business decision-making.</p>
+
+  <div class="section-heading">
+
+    <div class="section-kicker">
+      ABOUT THE PROJECT
+    </div>
+
+    <h2>
+      Health & Fitness Club Membership Platform
+    </h2>
+
   </div>
+
+  <div class="about-text">
+
+    <p>
+      This project focuses on managing and analyzing
+      health and fitness club membership operations
+      using a CRM / MIS approach.
+    </p>
+
+    <br>
+
+    <p>
+      The platform organizes member information,
+      membership plans and fitness activity attributes.
+      Its analytical dashboard presents membership
+      distribution, modelled revenue, engagement categories
+      and estimated churn risk to support business
+      decision-making.
+    </p>
+
+  </div>
+
 </section>
+
+<!-- FEATURES SECTION -->
 
 <section id="features">
-  <div class="section-heading"><div class="section-kicker">PROJECT CAPABILITIES</div><h2>Key Analytics Features</h2><p>Explore the main capabilities available in this project.</p></div>
-  <div class="features-grid">
-    <article class="feature-card"><div class="feature-number">01</div><h3>Membership Analysis</h3><p>Review total member records and Premium versus Standard membership distribution.</p></article>
-    <article class="feature-card"><div class="feature-number">02</div><h3>Revenue Overview</h3><p>Explore modelled monthly revenue based on the stated membership fee assumptions.</p></article>
-    <article class="feature-card"><div class="feature-number">03</div><h3>Member Profiles</h3><p>Search an individual member and open their detailed Member 360° profile.</p></article>
-    <article class="feature-card"><div class="feature-number">04</div><h3>Member Engagement</h3><p>Review High, Moderate and Low engagement categories derived from visit frequency.</p></article>
-    <article class="feature-card"><div class="feature-number">05</div><h3>Estimated Churn Risk</h3><p>Explore rule-based risk categories based on weekly gym visits, not confirmed cancellations.</p></article>
-    <article class="feature-card"><div class="feature-number">06</div><h3>Activity Preferences</h3><p>Review available group lesson, personal training, drink subscription and sauna attributes.</p></article>
+
+  <div class="section-heading">
+
+    <div class="section-kicker">
+      PROJECT CAPABILITIES
+    </div>
+
+    <h2>Key Analytics Features</h2>
+
+    <p>
+      Explore the main capabilities available in this project.
+    </p>
+
   </div>
+
+  <div class="features-grid">
+
+    <article class="feature-card">
+
+      <div class="feature-number">01</div>
+
+      <h3>Membership Analysis</h3>
+
+      <p>
+        Review total member records and Premium versus
+        Standard membership distribution.
+      </p>
+
+    </article>
+
+    <article class="feature-card">
+
+      <div class="feature-number">02</div>
+
+      <h3>Revenue Overview</h3>
+
+      <p>
+        Explore modelled monthly revenue based on the
+        stated membership fee assumptions.
+      </p>
+
+    </article>
+
+    <article class="feature-card">
+
+      <div class="feature-number">03</div>
+
+      <h3>Member Profiles</h3>
+
+      <p>
+        Search an individual member and open their
+        detailed Member 360° profile.
+      </p>
+
+    </article>
+
+    <article class="feature-card">
+
+      <div class="feature-number">04</div>
+
+      <h3>Member Engagement</h3>
+
+      <p>
+        Review High, Moderate and Low engagement
+        categories derived from visit frequency.
+      </p>
+
+    </article>
+
+    <article class="feature-card">
+
+      <div class="feature-number">05</div>
+
+      <h3>Estimated Churn Risk</h3>
+
+      <p>
+        Explore rule-based risk categories based on
+        weekly gym visits, not confirmed cancellations.
+      </p>
+
+    </article>
+
+    <article class="feature-card">
+
+      <div class="feature-number">06</div>
+
+      <h3>Activity Preferences</h3>
+
+      <p>
+        Review available group lesson, personal training,
+        drink subscription and sauna attributes.
+      </p>
+
+    </article>
+
+  </div>
+
 </section>
+
+<!-- TECHNOLOGY SECTION -->
 
 <section class="tech-section" id="technology">
-  <div class="section-heading"><div class="section-kicker">PROJECT TECHNOLOGY</div><h2>Technology Stack</h2></div>
-  <div class="tech-list">
-    <span class="tech-item">MySQL</span><span class="tech-item">HTML5</span><span class="tech-item">CSS3</span><span class="tech-item">JavaScript</span><span class="tech-item">Chart.js</span><span class="tech-item">CRM / MIS</span><span class="tech-item">GitHub Pages</span>
+
+  <div class="section-heading">
+
+    <div class="section-kicker">
+      PROJECT TECHNOLOGY
+    </div>
+
+    <h2>Technology Stack</h2>
+
   </div>
+
+  <div class="tech-list">
+
+    <span class="tech-item">MySQL</span>
+    <span class="tech-item">HTML5</span>
+    <span class="tech-item">CSS3</span>
+    <span class="tech-item">JavaScript</span>
+    <span class="tech-item">Chart.js</span>
+    <span class="tech-item">CRM / MIS</span>
+    <span class="tech-item">GitHub Pages</span>
+
+  </div>
+
 </section>
+
+<!-- GITHUB AND LINKEDIN -->
 
 <section id="connect">
-  <div class="section-heading"><div class="section-kicker">CONNECT WITH ME</div><h2>Explore My Work</h2><p>Connect with me and explore my projects and professional journey.</p>
-    <div class="social-links">
-      <a href="https://github.com/vishalrathore1" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      <a href="https://www.linkedin.com/in/vishal-rathour-4105ab3a4/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+
+  <div class="section-heading">
+
+    <div class="section-kicker">
+      CONNECT WITH ME
     </div>
+
+    <h2>Explore My Work</h2>
+
+    <p>
+      Connect with me and explore my projects
+      and professional journey.
+    </p>
+
+    <div class="social-links">
+
+      <a
+        href="https://github.com/vishalrathore1"
+        target="_blank"
+        rel="noopener noreferrer">
+        GitHub ↗
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/vishal-rathour-4105ab3a4/"
+        target="_blank"
+        rel="noopener noreferrer">
+        LinkedIn ↗
+      </a>
+
+    </div>
+
   </div>
+
 </section>
 
+<!-- FOOTER -->
+
 <footer>
-  <p><span>FITCLUB ANALYTICS</span> | Health & Fitness Club Membership Platform</p>
-  <p style="margin-top:8px">Academic Project | Business Intelligence & Analytics</p>
-  <p style="margin-top:8px">Built with MySQL, HTML, CSS and JavaScript</p>
+
+  <p>
+    <span>FITCLUB ANALYTICS</span>
+    | Health & Fitness Club Membership Platform
+  </p>
+
+  <p style="margin-top:8px">
+    Academic Project | Business Intelligence & Analytics
+  </p>
+
+  <p style="margin-top:8px">
+    Built with MySQL, HTML, CSS and JavaScript
+  </p>
+
 </footer>
+
 </body>
 </html>
