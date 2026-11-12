@@ -1,429 +1,349 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FitClub | Premium Analytics Dashboard</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FitClub | Individual Member Tracking</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root{--bg:#0b1018;--side:#0e1722;--panel:#121e2b;--panel2:#172638;--line:#26394b;--gold:#d6ad55;--teal:#45d6bb;--text:#edf3f7;--muted:#94a7b7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px Arial,sans-serif}
+.layout{display:grid;grid-template-columns:225px 1fr;min-height:100vh}
+.sidebar{background:var(--side);border-right:1px solid var(--line);padding:24px 16px;position:sticky;top:0;height:100vh}
+.brand{font-weight:800;letter-spacing:1.5px;font-size:17px;color:var(--gold);padding:5px 10px 25px}
+.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:6px}
+.navlabel{font-size:10px;color:#708496;letter-spacing:1.6px;padding:15px 10px 8px}
+.nav a{display:block;color:var(--muted);padding:11px 12px;border-radius:9px;text-decoration:none;margin:3px 0;font-size:13px}
+.nav a:hover{background:#d6ad5518;color:var(--gold)}
+.side-note{position:absolute;bottom:18px;left:16px;right:16px;font-size:11px;color:#74899a;line-height:1.7}
+.main{padding:27px 30px 45px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:26px}
+.top h1{font-size:24px;margin:0}
+.sub{color:var(--muted);font-size:12px;margin-top:6px}
+.pill{border:1px solid #45d6bb55;background:#45d6bb12;color:var(--teal);padding:8px 12px;border-radius:30px;font-size:11px}
+.section{margin:25px 0}
+.section-title{margin-bottom:14px}
+.section-title h2{font-size:17px;margin:0}
+.section-title p{font-size:11px;color:var(--muted);margin:5px 0 0}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:17px}
+.card label{font-size:11px;color:var(--muted)}
+.card strong{display:block;font-size:25px;margin:8px 0 4px}
+.card small{font-size:10px;color:var(--teal)}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel h3{font-size:13px;margin:0 0 14px}
+.chart{height:220px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.field,select{background:#0c1520;color:var(--text);border:1px solid var(--line);padding:11px 12px;border-radius:8px;outline:none}
+.field{flex:1;min-width:210px}
+select{min-width:145px}
+.btn{background:var(--gold);color:#111;border:0;padding:11px 15px;border-radius:8px;font-weight:700;cursor:pointer}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:12px}
+th{color:var(--muted);font-weight:600;background:#0f1a26}
+tbody tr:hover{background:#ffffff08}
+.linkbtn{border:1px solid #d6ad5566;color:var(--gold);background:transparent;padding:6px 9px;border-radius:7px;cursor:pointer}
+.status{color:var(--teal)}
+.profile{display:none;grid-template-columns:1fr 1fr;gap:13px;margin-top:15px}
+.profile.show{display:grid}
+.profile-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}
+.profile h3{margin:0;font-size:17px}
+.profile-box{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:15px}
+.profile-box span{display:block;color:var(--muted);font-size:10px;margin-bottom:6px}
+.profile-box strong{font-size:14px}
+.notice{border-left:3px solid var(--gold);padding:13px 15px;background:#d6ad550d;color:#c5b48e;border-radius:0 8px 8px 0;font-size:11px;line-height:1.6;margin-top:16px}
+.empty{padding:25px;text-align:center;color:var(--muted)}
+.pager{display:flex;justify-content:space-between;align-items:center;padding:12px;color:var(--muted);font-size:11px}
+.pager button{background:#172638;color:var(--text);border:1px solid var(--line);padding:7px 11px;border-radius:7px;cursor:pointer}
+.pager button:disabled{opacity:.35;cursor:not-allowed}
+@media(max-width:900px){
+.layout{grid-template-columns:1fr}
+.sidebar{height:auto;position:relative;padding:12px 15px}
+.brand{padding:4px 5px 10px}
+.nav{display:flex;flex-wrap:wrap}
+.navlabel,.side-note{display:none}
+.nav a{padding:8px 10px}
+.main{padding:20px 15px}
+.cards{grid-template-columns:repeat(2,1fr)}
 }
-
-body {
-    background: #101010;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-    padding: 25px;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-h1 {
-    color: #d6ad55;
-    font-size: 30px;
-}
-
-.subtitle {
-    color: #aaa;
-    margin-top: 8px;
-    font-size: 14px;
-}
-
-.tag {
-    border: 1px solid #d6ad55;
-    color: #d6ad55;
-    padding: 12px 20px;
-    border-radius: 25px;
-    font-size: 13px;
-}
-
-h2 {
-    color: #d6ad55;
-    font-size: 21px;
-    margin: 30px 0 18px;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 18px;
-}
-
-.card, .panel {
-    background: #1c1c1c;
-    border: 1px solid #38332a;
-    border-radius: 15px;
-    padding: 22px;
-}
-
-.card {
-    border-top: 3px solid #d6ad55;
-}
-
-.card p {
-    color: #aaa;
-    font-size: 14px;
-}
-
-.card h2 {
-    font-size: 30px;
-    color: #e4c477;
-    margin: 15px 0 8px;
-}
-
-.card small {
-    color: #999;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.panel h3 {
-    font-size: 17px;
-    margin-bottom: 20px;
-    color: #e4c477;
-}
-
-.chart {
-    height: 270px;
-    position: relative;
-}
-
-.note {
-    color: #aaa;
-    font-size: 13px;
-    line-height: 1.8;
-    margin-top: 10px;
-}
-
-.status {
-    color: #d6ad55;
-    font-size: 13px;
-    margin-top: 15px;
-}
-
-footer {
-    text-align: center;
-    color: #888;
-    margin: 40px 0 15px;
-    font-size: 13px;
-}
-
-@media(max-width:600px) {
-    body {
-        padding: 14px;
-    }
-
-    h1 {
-        font-size: 23px;
-    }
-
-    .chart {
-        height: 230px;
-    }
+@media(max-width:600px){
+.charts{grid-template-columns:1fr}
+.profile{grid-template-columns:1fr 1fr}
+.top h1{font-size:20px}
+.card strong{font-size:21px}
 }
 </style>
 </head>
-
 <body>
+<div class="layout">
+<aside class="sidebar">
+<div class="brand">FITCLUB<small>MEMBER INTELLIGENCE</small></div>
+<div class="navlabel">WORKSPACE</div>
+<nav class="nav">
+<a href="#overview">Overview</a>
+<a href="#members">Individual Members</a>
+<a href="#insights">Analytics</a>
+<a href="#notes">Data Notes</a>
+<a href="./index.html">← Back to Website</a>
+</nav>
+<div class="side-note">ACADEMIC DEMO<br>1,000 sample member IDs<br>Personal identities are not included.</div>
+</aside>
 
-<header>
-    <div>
-        <h1>FITCLUB ANALYTICS</h1>
-        <p class="subtitle">
-            Health & Fitness Club Membership | CRM / MIS
-        </p>
-    </div>
-    <span class="tag">PREMIUM DASHBOARD</span>
+<main class="main">
+<header class="top">
+<div>
+<h1>Member Tracking Dashboard</h1>
+<div class="sub">Health & Fitness Club Membership Platform · CRM / MIS</div>
+</div>
+<span class="pill">● DEMO DATASET · 1,000 MEMBERS</span>
 </header>
 
-<!-- MEMBERSHIP OVERVIEW -->
-
+<section class="section" id="overview">
+<div class="section-title">
 <h2>Membership Overview</h2>
-
-<section class="cards">
-
-    <div class="card">
-        <p>Total Members</p>
-        <h2>1,000</h2>
-        <small>Unique members</small>
-    </div>
-
-    <div class="card">
-        <p>Total Paid Amount</p>
-        <h2>₹39.86 L</h2>
-        <small>Verified paid payments</small>
-    </div>
-
-    <div class="card">
-        <p>Premium Members</p>
-        <h2>493</h2>
-        <small>49.3% of members</small>
-    </div>
-
-    <div class="card">
-        <p>Standard Members</p>
-        <h2>507</h2>
-        <small>50.7% of members</small>
-    </div>
-
-    <div class="card">
-        <p>Clean Memberships</p>
-        <h2>1,000</h2>
-        <small>One record per member</small>
-    </div>
-
+<p>Summary of the prepared sample dataset</p>
+</div>
+<div class="cards">
+<div class="card"><label>Total Members</label><strong>1,000</strong><small>Unique member IDs</small></div>
+<div class="card"><label>Modeled Monthly Revenue</label><strong>₹40.00L</strong><small>₹40,00,000 sample value</small></div>
+<div class="card"><label>Premium Members</label><strong>500</strong><small>50% of sample</small></div>
+<div class="card"><label>Standard Members</label><strong>500</strong><small>50% of sample</small></div>
+</div>
 </section>
 
-<!-- REVENUE ANALYSIS -->
+<section class="section" id="members">
+<div class="section-title">
+<h2>Individual Member Tracking</h2>
+<p>Search any sample ID from 1 to 1,000 and open its membership, payment and attendance snapshot.</p>
+</div>
 
-<h2>Revenue & Membership Analysis</h2>
+<div class="toolbar">
+<input class="field" id="search" placeholder="Search Member ID (e.g. 1000)..." type="search">
+<select id="planFilter">
+<option value="all">All Plans</option>
+<option value="Premium">Premium</option>
+<option value="Standard">Standard</option>
+</select>
+<select id="statusFilter">
+<option value="all">All Status</option>
+<option value="Active">Active</option>
+</select>
+<button class="btn" id="searchBtn">Search</button>
+</div>
 
-<section class="grid">
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Member ID</th>
+<th>Plan</th>
+<th>Monthly Fee</th>
+<th>Membership Status</th>
+<th>Payment</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="memberRows"></tbody>
+</table>
+<div id="empty" class="empty" style="display:none">No matching demo member found.</div>
+<div class="pager">
+<span id="range">Showing 1–20 of 1,000</span>
+<div>
+<button id="prev">Previous</button>
+<button id="next">Next</button>
+</div>
+</div>
+</div>
 
-    <div class="panel">
-        <h3>Revenue by Membership Plan</h3>
-        <div class="chart">
-            <canvas id="revenue"></canvas>
-        </div>
-    </div>
+<div class="profile" id="profile">
+<div class="profile-head">
+<div>
+<h3 id="profileTitle">Member profile</h3>
+<span class="sub">Individual demo record</span>
+</div>
+<button class="linkbtn" id="closeProfile">Close ×</button>
+</div>
+<div class="profile-box"><span>Membership Plan</span><strong id="pPlan"></strong></div>
+<div class="profile-box"><span>Membership Status</span><strong id="pStatus"></strong></div>
+<div class="profile-box"><span>Monthly Plan Fee</span><strong id="pFee"></strong></div>
+<div class="profile-box"><span>Membership Period</span><strong id="pPeriod"></strong></div>
+<div class="profile-box"><span>Payment Status</span><strong id="pPayment"></strong></div>
+<div class="profile-box"><span>Payment Method</span><strong id="pMethod"></strong></div>
+<div class="profile-box"><span>Payment Date</span><strong id="pDate"></strong></div>
+<div class="profile-box"><span>Attendance Records</span><strong id="pAttendance"></strong></div>
+<div class="profile-box"><span>Attendance Date</span><strong id="pAttendDate"></strong></div>
+<div class="profile-box"><span>Personal Details</span><strong>Not available in demo dataset</strong></div>
+</div>
 
-    <div class="panel">
-        <h3>Members by Membership Plan</h3>
-        <div class="chart">
-            <canvas id="members"></canvas>
-        </div>
-    </div>
-
+<div class="notice">
+Demo data note: source records have blank names, email, phone and city fields. This tracker uses Member IDs, not invented identities. Each member has one active membership, one paid payment and one attendance record dated 02 Oct 2026. Plan assignment is illustrative (IDs 1–500 Premium; 501–1000 Standard).
+</div>
 </section>
 
-<!-- MEMBER ANALYSIS -->
-
-<h2>Payment, Gender & Member Analysis</h2>
-
-<section class="grid">
-
-    <div class="panel">
-        <h3>Payment Method Distribution</h3>
-        <div class="chart">
-            <canvas id="paymentMethods"></canvas>
-        </div>
-        <p class="status">1,000 verified paid payments</p>
-        <p class="note">Card: 334 | Cash: 333 | UPI: 333</p>
-    </div>
-
-    <div class="panel">
-        <h3>Gender Distribution</h3>
-        <div class="chart">
-            <canvas id="genderChart"></canvas>
-        </div>
-        <p class="status">1,000 verified members</p>
-        <p class="note">Female: 503 | Male: 497</p>
-    </div>
-
-    <div class="panel">
-        <h3>Member Engagement Analysis</h3>
-        <div class="chart">
-            <canvas id="engagementChart"></canvas>
-        </div>
-        <p class="status">586 Moderate | 220 High | 194 Low</p>
-    </div>
-
-    <div class="panel">
-        <h3>Churn Risk Analysis</h3>
-        <div class="chart">
-            <canvas id="churnChart"></canvas>
-        </div>
-        <p class="status">194 High | 272 Medium | 532 Low Risk</p>
-    </div>
-
+<section class="section" id="insights">
+<div class="section-title">
+<h2>Sample Analytics</h2>
+<p>Aggregates based on the cleaned demonstration tables</p>
+</div>
+<div class="charts">
+<div class="panel">
+<h3>Members by Plan</h3>
+<div class="chart"><canvas id="planChart"></canvas></div>
+</div>
+<div class="panel">
+<h3>Payment Method Distribution</h3>
+<div class="chart"><canvas id="payChart"></canvas></div>
+</div>
+</div>
 </section>
 
-<footer>
-    FitClub Membership Analytics | Academic Project Dashboard
-</footer>
+<section class="section" id="notes">
+<div class="notice">
+<strong>Important limitations</strong><br>
+This is a front-end demonstration, not a live database-connected gym management system. It does not save edits or accept real payments. Historical churn, renewal trends and attendance trends cannot be calculated from the one-day sample. No real member personal information is published.
+</div>
+</section>
+</main>
+</div>
 
 <script>
+const members=Array.from({length:1000},(_,i)=>{
+const id=i+1;
+const plan=id<=500?"Premium":"Standard";
+const fee=plan==="Premium"?5000:3000;
+const rem=id%3;
+const method=rem===1?"Card":rem===2?"Cash":"UPI";
+return {
+id,plan,fee,status:"Active",payment:"Paid",method,
+date:"2026-10-02",
+start:"2026-10-02",
+end:"2027-10-02",
+attendance:1,
+attendDate:"2026-10-02"
+};
+});
 
-Chart.defaults.color = "#cccccc";
-Chart.defaults.font.family = "Arial";
+let page=1;
+const pageSize=20;
+let filtered=members.slice();
+const el=id=>document.getElementById(id);
 
-const common = {
-    responsive: true,
-    maintainAspectRatio: false
+function render(){
+const start=(page-1)*pageSize;
+const rows=filtered.slice(start,start+pageSize);
+
+el("memberRows").innerHTML=rows.map(m=>`
+<tr>
+<td>#${m.id}</td>
+<td>${m.plan}</td>
+<td>₹${m.fee.toLocaleString("en-IN")}</td>
+<td class="status">${m.status}</td>
+<td>${m.payment}</td>
+<td><button class="linkbtn" data-id="${m.id}">View Profile</button></td>
+</tr>
+`).join("");
+
+el("empty").style.display=filtered.length?"none":"block";
+el("range").textContent=filtered.length
+?`Showing ${start+1}–${Math.min(start+pageSize,filtered.length)} of ${filtered.length}`
+:"0 results";
+
+el("prev").disabled=page===1;
+el("next").disabled=page*pageSize>=filtered.length;
+
+document.querySelectorAll("[data-id]").forEach(b=>{
+b.addEventListener("click",()=>showProfile(Number(b.dataset.id)));
+});
+}
+
+function applyFilters(){
+const q=el("search").value.trim().toLowerCase();
+const plan=el("planFilter").value;
+const status=el("statusFilter").value;
+
+filtered=members.filter(m=>
+(!q||String(m.id).includes(q)||("#"+m.id).includes(q))&&
+(plan==="all"||m.plan===plan)&&
+(status==="all"||m.status===status)
+);
+page=1;
+render();
+}
+
+function showProfile(id){
+const m=members[id-1];
+if(!m)return;
+
+el("profileTitle").textContent="Member #"+m.id;
+el("pPlan").textContent=m.plan;
+el("pStatus").textContent=m.status;
+el("pFee").textContent="₹"+m.fee.toLocaleString("en-IN")+" / month";
+el("pPeriod").textContent=m.start+" to "+m.end;
+el("pPayment").textContent=m.payment;
+el("pMethod").textContent=m.method;
+el("pDate").textContent=m.date;
+el("pAttendance").textContent=m.attendance+" record";
+el("pAttendDate").textContent=m.attendDate;
+
+el("profile").classList.add("show");
+el("profile").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+el("searchBtn").addEventListener("click",applyFilters);
+el("search").addEventListener("keydown",e=>{
+if(e.key==="Enter")applyFilters();
+});
+el("planFilter").addEventListener("change",applyFilters);
+el("statusFilter").addEventListener("change",applyFilters);
+
+el("prev").addEventListener("click",()=>{
+if(page>1){page--;render();}
+});
+el("next").addEventListener("click",()=>{
+if(page*pageSize<filtered.length){page++;render();}
+});
+el("closeProfile").addEventListener("click",()=>{
+el("profile").classList.remove("show");
+});
+
+render();
+
+Chart.defaults.color="#aebdca";
+Chart.defaults.font.family="Arial";
+const opts={
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{position:"bottom"}}
 };
 
-// REVENUE BY MEMBERSHIP PLAN
-
-new Chart(document.getElementById("revenue"), {
-    type: "bar",
-    data: {
-        labels: ["Premium", "Standard"],
-        datasets: [{
-            label: "Revenue (₹)",
-            data: [2465000, 1521000],
-            backgroundColor: ["#D6AD55", "#8B713C"],
-            borderRadius: 5
-        }]
-    },
-    options: {
-        ...common,
-        plugins: {
-            legend: { display: false }
-        },
-        scales: {
-            y: { beginAtZero: true }
-        }
-    }
+new Chart(el("planChart"),{
+type:"doughnut",
+data:{
+labels:["Premium","Standard"],
+datasets:[{
+data:[500,500],
+backgroundColor:["#d6ad55","#45b9b0"],
+borderWidth:0
+}]
+},
+options:{...opts,cutout:"66%"}
 });
 
-// MEMBERS BY MEMBERSHIP PLAN
-
-new Chart(document.getElementById("members"), {
-    type: "doughnut",
-    data: {
-        labels: ["Premium", "Standard"],
-        datasets: [{
-            data: [493, 507],
-            backgroundColor: ["#D6AD55", "#5B9BD5"],
-            borderColor: "#1c1c1c",
-            borderWidth: 4,
-            hoverOffset: 12
-        }]
-    },
-    options: {
-        ...common,
-        cutout: "60%",
-        plugins: {
-            legend: { position: "bottom" }
-        }
-    }
+new Chart(el("payChart"),{
+type:"doughnut",
+data:{
+labels:["Card","Cash","UPI"],
+datasets:[{
+data:[334,333,333],
+backgroundColor:["#d6ad55","#45b9b0","#6da7e8"],
+borderWidth:0
+}]
+},
+options:{...opts,cutout:"66%"}
 });
-
-// PAYMENT METHOD DISTRIBUTION
-
-new Chart(document.getElementById("paymentMethods"), {
-    type: "doughnut",
-    data: {
-        labels: ["Card", "Cash", "UPI"],
-        datasets: [{
-            data: [334, 333, 333],
-            backgroundColor: [
-                "#D6AD55",
-                "#38B2AC",
-                "#A78BFA"
-            ],
-            borderColor: "#1c1c1c",
-            borderWidth: 4,
-            hoverOffset: 12
-        }]
-    },
-    options: {
-        ...common,
-        cutout: "60%",
-        plugins: {
-            legend: { position: "bottom" }
-        }
-    }
-});
-
-// GENDER DISTRIBUTION
-
-new Chart(document.getElementById("genderChart"), {
-    type: "doughnut",
-    data: {
-        labels: ["Female", "Male"],
-        datasets: [{
-            data: [503, 497],
-            backgroundColor: [
-                "#E6B85C",
-                "#5B9BD5"
-            ],
-            borderColor: "#1c1c1c",
-            borderWidth: 4,
-            hoverOffset: 12
-        }]
-    },
-    options: {
-        ...common,
-        cutout: "60%",
-        plugins: {
-            legend: { position: "bottom" }
-        }
-    }
-});
-
-// MEMBER ENGAGEMENT ANALYSIS
-
-new Chart(document.getElementById("engagementChart"), {
-    type: "doughnut",
-    data: {
-        labels: ["Moderate", "High", "Low"],
-        datasets: [{
-            data: [586, 220, 194],
-            backgroundColor: [
-                "#38B2AC",
-                "#D6AD55",
-                "#A78BFA"
-            ],
-            borderColor: "#1c1c1c",
-            borderWidth: 4,
-            hoverOffset: 12
-        }]
-    },
-    options: {
-        ...common,
-        cutout: "60%",
-        plugins: {
-            legend: { position: "bottom" }
-        }
-    }
-});
-
-// CHURN RISK ANALYSIS
-
-new Chart(document.getElementById("churnChart"), {
-    type: "doughnut",
-    data: {
-        labels: ["High Risk", "Medium Risk", "Low Risk"],
-        datasets: [{
-            data: [194, 272, 532],
-            backgroundColor: [
-                "#E06455",
-                "#E6B85C",
-                "#38A169"
-            ],
-            borderColor: "#1c1c1c",
-            borderWidth: 4,
-            hoverOffset: 12
-        }]
-    },
-    options: {
-        ...common,
-        cutout: "60%",
-        plugins: {
-            legend: { position: "bottom" }
-        }
-    }
-});
-
 </script>
-
 </body>
 </html>
