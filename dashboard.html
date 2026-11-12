@@ -10,416 +10,376 @@
 
 <style>
 :root {
-    --bg: #0b1018;
-    --side: #0e1722;
-    --panel: #121e2b;
-    --panel2: #172638;
-    --line: #26394b;
-    --gold: #d6ad55;
-    --teal: #45d6bb;
-    --text: #edf3f7;
-    --muted: #94a7b7;
+    --bg:#0b1018;
+    --side:#0e1722;
+    --panel:#121e2b;
+    --panel2:#172638;
+    --line:#26394b;
+    --gold:#d6ad55;
+    --teal:#45d6bb;
+    --text:#edf3f7;
+    --muted:#94a7b7;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior:smooth; }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,sans-serif;
 }
 
 .layout {
-    display: grid;
-    grid-template-columns: 225px 1fr;
-    min-height: 100vh;
+    display:grid;
+    grid-template-columns:225px 1fr;
+    min-height:100vh;
 }
 
 .sidebar {
-    background: var(--side);
-    border-right: 1px solid var(--line);
-    padding: 24px 16px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    background:var(--side);
+    border-right:1px solid var(--line);
+    padding:24px 16px;
+    position:sticky;
+    top:0;
+    height:100vh;
 }
 
 .brand {
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    font-size: 19px;
-    color: var(--gold);
-    padding: 5px 10px 25px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    font-size:19px;
+    color:var(--gold);
+    padding:5px 10px 25px;
 }
 
 .brand small {
-    display: block;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    margin-top: 6px;
+    display:block;
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:2px;
+    margin-top:6px;
 }
 
 .navlabel {
-    font-size: 10px;
-    color: #708496;
-    letter-spacing: 1.6px;
-    padding: 15px 10px 8px;
+    font-size:10px;
+    color:#708496;
+    letter-spacing:1.6px;
+    padding:15px 10px 8px;
 }
 
 .nav a {
-    display: block;
-    color: var(--muted);
-    padding: 11px 12px;
-    border-radius: 9px;
-    text-decoration: none;
-    margin: 3px 0;
-    font-size: 13px;
+    display:block;
+    color:var(--muted);
+    padding:11px 12px;
+    border-radius:9px;
+    text-decoration:none;
+    margin:3px 0;
+    font-size:13px;
 }
 
 .nav a:hover {
-    background: #d6ad5518;
-    color: var(--gold);
+    background:#d6ad5518;
+    color:var(--gold);
 }
 
 .side-note {
-    position: absolute;
-    bottom: 18px;
-    left: 16px;
-    right: 16px;
-    font-size: 11px;
-    color: #74899a;
-    line-height: 1.7;
+    position:absolute;
+    bottom:18px;
+    left:16px;
+    right:16px;
+    font-size:11px;
+    color:#74899a;
+    line-height:1.7;
 }
 
 .main {
-    padding: 27px 30px 45px;
-    min-width: 0;
+    padding:27px 30px 45px;
+    min-width:0;
 }
 
 .top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:26px;
 }
 
 .top h1 {
-    font-size: 24px;
-    margin: 0;
+    font-size:24px;
 }
 
 .sub {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 6px;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:6px;
 }
 
 .pill {
-    border: 1px solid #45d6bb55;
-    background: #45d6bb12;
-    color: var(--teal);
-    padding: 8px 12px;
-    border-radius: 30px;
-    font-size: 11px;
+    border:1px solid #45d6bb55;
+    background:#45d6bb12;
+    color:var(--teal);
+    padding:8px 12px;
+    border-radius:30px;
+    font-size:11px;
 }
 
-.section {
-    margin: 25px 0;
-}
+.section { margin:25px 0; }
 
-.section-title {
-    margin-bottom: 14px;
-}
+.section-title { margin-bottom:14px; }
 
 .section-title h2 {
-    font-size: 17px;
-    margin: 0;
+    font-size:17px;
 }
 
 .section-title p {
-    font-size: 11px;
-    color: var(--muted);
-    margin: 5px 0 0;
+    font-size:11px;
+    color:var(--muted);
+    margin:5px 0 0;
 }
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 13px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:13px;
 }
 
-.card, .panel {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 13px;
-    padding: 17px;
+.card,.panel {
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:17px;
 }
 
 .card label {
-    font-size: 11px;
-    color: var(--muted);
+    font-size:11px;
+    color:var(--muted);
 }
 
 .card strong {
-    display: block;
-    font-size: 25px;
-    margin: 8px 0 4px;
+    display:block;
+    font-size:25px;
+    margin:8px 0 4px;
 }
 
 .card small {
-    font-size: 10px;
-    color: var(--teal);
+    font-size:10px;
+    color:var(--teal);
 }
 
 .charts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
 }
 
 .panel h3 {
-    font-size: 13px;
-    margin: 0 0 14px;
+    font-size:13px;
+    margin:0 0 14px;
 }
 
 .chart {
-    height: 235px;
-    position: relative;
+    height:235px;
+    position:relative;
 }
 
 .chart-note {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 12px;
-    line-height: 1.6;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:12px;
+    line-height:1.6;
 }
 
 .toolbar {
-    display: flex;
-    gap: 9px;
-    flex-wrap: wrap;
-    margin: 14px 0;
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin:14px 0;
 }
 
-.field, select {
-    background: #0c1520;
-    color: var(--text);
-    border: 1px solid var(--line);
-    padding: 11px 12px;
-    border-radius: 8px;
-    outline: none;
+.field,select {
+    background:#0c1520;
+    color:var(--text);
+    border:1px solid var(--line);
+    padding:11px 12px;
+    border-radius:8px;
+    outline:none;
 }
 
 .field {
-    flex: 1;
-    min-width: 210px;
+    flex:1;
+    min-width:210px;
 }
 
-select {
-    min-width: 145px;
-}
+select { min-width:145px; }
 
 .btn {
-    background: var(--gold);
-    color: #111;
-    border: 0;
-    padding: 11px 15px;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
+    background:var(--gold);
+    color:#111;
+    border:0;
+    padding:11px 15px;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
 }
 
-.btn:hover {
-    background: #f0cc79;
-}
+.btn:hover { background:#f0cc79; }
 
 .table-wrap {
-    overflow: auto;
-    border: 1px solid var(--line);
-    border-radius: 12px;
+    overflow:auto;
+    border:1px solid var(--line);
+    border-radius:12px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 620px;
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
 }
 
-th, td {
-    text-align: left;
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--line);
-    font-size: 12px;
+th,td {
+    text-align:left;
+    padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    font-size:12px;
 }
 
 th {
-    color: var(--muted);
-    font-weight: 600;
-    background: #0f1a26;
+    color:var(--muted);
+    font-weight:600;
+    background:#0f1a26;
 }
 
-tbody tr:hover {
-    background: #ffffff08;
-}
+tbody tr:hover { background:#ffffff08; }
 
 .linkbtn {
-    border: 1px solid #d6ad5566;
-    color: var(--gold);
-    background: transparent;
-    padding: 6px 9px;
-    border-radius: 7px;
-    cursor: pointer;
+    border:1px solid #d6ad5566;
+    color:var(--gold);
+    background:transparent;
+    padding:6px 9px;
+    border-radius:7px;
+    cursor:pointer;
 }
 
-.status {
-    color: var(--teal);
-}
+.status { color:var(--teal); }
 
 .profile {
-    display: none;
-    grid-template-columns: 1fr 1fr;
-    gap: 13px;
-    margin-top: 15px;
+    display:none;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+    margin-top:15px;
 }
 
-.profile.show {
-    display: grid;
-}
+.profile.show { display:grid; }
 
 .profile-head {
-    grid-column: 1/-1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    grid-column:1/-1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .profile h3 {
-    margin: 0;
-    font-size: 17px;
+    margin:0;
+    font-size:17px;
 }
 
 .profile-box {
-    background: var(--panel2);
-    border: 1px solid var(--line);
-    border-radius: 11px;
-    padding: 15px;
+    background:var(--panel2);
+    border:1px solid var(--line);
+    border-radius:11px;
+    padding:15px;
 }
 
 .profile-box span {
-    display: block;
-    color: var(--muted);
-    font-size: 10px;
-    margin-bottom: 6px;
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-bottom:6px;
 }
 
-.profile-box strong {
-    font-size: 14px;
-}
+.profile-box strong { font-size:14px; }
 
 .notice {
-    border-left: 3px solid var(--gold);
-    padding: 13px 15px;
-    background: #d6ad550d;
-    color: #c5b48e;
-    border-radius: 0 8px 8px 0;
-    font-size: 11px;
-    line-height: 1.7;
-    margin-top: 16px;
+    border-left:3px solid var(--gold);
+    padding:13px 15px;
+    background:#d6ad550d;
+    color:#c5b48e;
+    border-radius:0 8px 8px 0;
+    font-size:11px;
+    line-height:1.7;
+    margin-top:16px;
 }
 
 .empty {
-    padding: 25px;
-    text-align: center;
-    color: var(--muted);
+    padding:25px;
+    text-align:center;
+    color:var(--muted);
 }
 
 .pager {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    color: var(--muted);
-    font-size: 11px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px;
+    color:var(--muted);
+    font-size:11px;
 }
 
 .pager button {
-    background: #172638;
-    color: var(--text);
-    border: 1px solid var(--line);
-    padding: 7px 11px;
-    border-radius: 7px;
-    cursor: pointer;
+    background:#172638;
+    color:var(--text);
+    border:1px solid var(--line);
+    padding:7px 11px;
+    border-radius:7px;
+    cursor:pointer;
 }
 
 .pager button:disabled {
-    opacity: .35;
-    cursor: not-allowed;
+    opacity:.35;
+    cursor:not-allowed;
 }
 
 @media(max-width:900px) {
-    .layout {
-        grid-template-columns: 1fr;
-    }
+    .layout { grid-template-columns:1fr; }
 
     .sidebar {
-        height: auto;
-        position: relative;
-        padding: 12px 15px;
+        height:auto;
+        position:relative;
+        padding:12px 15px;
     }
 
-    .brand {
-        padding: 4px 5px 10px;
-    }
+    .brand { padding:4px 5px 10px; }
 
     .nav {
-        display: flex;
-        flex-wrap: wrap;
+        display:flex;
+        flex-wrap:wrap;
     }
 
-    .navlabel, .side-note {
-        display: none;
-    }
+    .navlabel,.side-note { display:none; }
 
-    .nav a {
-        padding: 8px 10px;
-    }
+    .nav a { padding:8px 10px; }
 
-    .main {
-        padding: 20px 15px;
-    }
+    .main { padding:20px 15px; }
 
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .cards { grid-template-columns:repeat(2,1fr); }
 }
 
 @media(max-width:600px) {
-    .charts {
-        grid-template-columns: 1fr;
-    }
+    .charts { grid-template-columns:1fr; }
 
-    .profile {
-        grid-template-columns: 1fr 1fr;
-    }
+    .profile { grid-template-columns:1fr 1fr; }
 
-    .top h1 {
-        font-size: 20px;
-    }
+    .top h1 { font-size:20px; }
 
-    .card strong {
-        font-size: 21px;
-    }
+    .card strong { font-size:21px; }
 }
 </style>
 </head>
@@ -462,7 +422,6 @@ tbody tr:hover {
             Health & Fitness Club Membership Platform · CRM / MIS
         </div>
     </div>
-
     <span class="pill">● DEMO DATASET · 1,000 MEMBERS</span>
 </header>
 
@@ -504,7 +463,7 @@ tbody tr:hover {
     </div>
 </section>
 
-<!-- INDIVIDUAL MEMBER TRACKING -->
+<!-- INDIVIDUAL MEMBERS -->
 
 <section class="section" id="members">
 
@@ -560,7 +519,6 @@ tbody tr:hover {
 
         <div class="pager">
             <span id="range">Showing 1–20 of 1,000</span>
-
             <div>
                 <button id="prev">Previous</button>
                 <button id="next">Next</button>
@@ -681,8 +639,8 @@ tbody tr:hover {
                 <canvas id="engagementChart"></canvas>
             </div>
             <p class="chart-note">
-                Engagement categories require multiple attendance
-                records over time. Not available in current sample.
+                Moderate: 586 (58.6%) · High: 220 (22%) ·
+                Low: 194 (19.4%)
             </p>
         </div>
 
@@ -692,8 +650,8 @@ tbody tr:hover {
                 <canvas id="churnChart"></canvas>
             </div>
             <p class="chart-note">
-                Churn risk requires cancellation, renewal and
-                historical engagement data. Not available currently.
+                Low Risk: 532 (53.2%) · Medium Risk: 274 (27.4%) ·
+                High Risk: 194 (19.4%)
             </p>
         </div>
 
@@ -730,14 +688,14 @@ tbody tr:hover {
         <br><br>
 
         <strong>4. Engagement:</strong>
-        One attendance record per member cannot establish
-        high, moderate or low engagement trends.
+        Engagement distribution uses the supplied aggregate
+        figures: Moderate 586, High 220 and Low 194.
 
         <br><br>
 
-        <strong>5. Churn:</strong>
-        All sample memberships are active. There is no
-        cancellation or renewal history to calculate churn risk.
+        <strong>5. Churn Risk:</strong>
+        Churn risk distribution uses the supplied aggregate
+        figures: Low 532, Medium 274 and High 194.
 
         <br><br>
 
@@ -783,14 +741,14 @@ const members = Array.from({length:1000}, (_,i) => {
         id,
         plan,
         fee,
-        status: "Active",
-        payment: "Paid",
+        status:"Active",
+        payment:"Paid",
         method,
-        date: "2026-10-02",
-        start: "2026-10-02",
-        end: "2027-10-02",
-        attendance: 1,
-        attendDate: "2026-10-02"
+        date:"2026-10-02",
+        start:"2026-10-02",
+        end:"2027-10-02",
+        attendance:1,
+        attendDate:"2026-10-02"
     };
 });
 
@@ -853,9 +811,7 @@ function render() {
 function applyFilters() {
 
     const q = el("search").value.trim().toLowerCase();
-
     const plan = el("planFilter").value;
-
     const status = el("statusFilter").value;
 
     filtered = members.filter(m => {
@@ -872,11 +828,9 @@ function applyFilters() {
             status === "all" || m.status === status;
 
         return matchSearch && matchPlan && matchStatus;
-
     });
 
     page = 1;
-
     render();
 }
 
@@ -891,35 +845,25 @@ function showProfile(id) {
     if (!m) return;
 
     el("profileTitle").textContent = "Member #" + m.id;
-
     el("pPlan").textContent = m.plan;
-
     el("pStatus").textContent = m.status;
 
     el("pFee").textContent =
         "₹" + m.fee.toLocaleString("en-IN") + " / month";
 
-    el("pPeriod").textContent =
-        m.start + " to " + m.end;
-
+    el("pPeriod").textContent = m.start + " to " + m.end;
     el("pPayment").textContent = m.payment;
-
     el("pMethod").textContent = m.method;
-
     el("pDate").textContent = m.date;
-
-    el("pAttendance").textContent =
-        m.attendance + " record";
-
+    el("pAttendance").textContent = m.attendance + " record";
     el("pAttendDate").textContent = m.attendDate;
 
     el("profile").classList.add("show");
 
     el("profile").scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
+        behavior:"smooth",
+        block:"nearest"
     });
-
 }
 
 // ---------------------------------
@@ -933,32 +877,26 @@ el("search").addEventListener("keydown", e => {
 });
 
 el("planFilter").addEventListener("change", applyFilters);
-
 el("statusFilter").addEventListener("change", applyFilters);
 
 el("prev").addEventListener("click", () => {
-
     if (page > 1) {
         page--;
         render();
     }
-
 });
 
 el("next").addEventListener("click", () => {
-
     if (page * pageSize < filtered.length) {
         page++;
         render();
     }
-
 });
 
 el("closeProfile").addEventListener("click", () => {
     el("profile").classList.remove("show");
 });
 
-// Initial table
 render();
 
 // ---------------------------------
@@ -969,15 +907,15 @@ Chart.defaults.color = "#aebdca";
 Chart.defaults.font.family = "Arial";
 
 const donutOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    cutout: "65%",
-    plugins: {
-        legend: {
-            position: "bottom",
-            labels: {
-                padding: 18,
-                usePointStyle: true
+    responsive:true,
+    maintainAspectRatio:false,
+    cutout:"65%",
+    plugins:{
+        legend:{
+            position:"bottom",
+            labels:{
+                padding:18,
+                usePointStyle:true
             }
         }
     }
@@ -989,23 +927,19 @@ const donutOptions = {
 
 new Chart(el("planChart"), {
 
-    type: "doughnut",
+    type:"doughnut",
 
-    data: {
-        labels: ["Premium", "Standard"],
+    data:{
+        labels:["Premium","Standard"],
 
-        datasets: [{
-            data: [500, 500],
-            backgroundColor: [
-                "#d6ad55",
-                "#45b9b0"
-            ],
-            borderWidth: 0
+        datasets:[{
+            data:[500,500],
+            backgroundColor:["#d6ad55","#45b9b0"],
+            borderWidth:0
         }]
     },
 
-    options: donutOptions
-
+    options:donutOptions
 });
 
 // ---------------------------------
@@ -1014,24 +948,23 @@ new Chart(el("planChart"), {
 
 new Chart(el("payChart"), {
 
-    type: "doughnut",
+    type:"doughnut",
 
-    data: {
-        labels: ["Card", "Cash", "UPI"],
+    data:{
+        labels:["Card","Cash","UPI"],
 
-        datasets: [{
-            data: [334, 333, 333],
-            backgroundColor: [
+        datasets:[{
+            data:[334,333,333],
+            backgroundColor:[
                 "#d6ad55",
                 "#45b9b0",
                 "#6da7e8"
             ],
-            borderWidth: 0
+            borderWidth:0
         }]
     },
 
-    options: donutOptions
-
+    options:donutOptions
 });
 
 // ---------------------------------
@@ -1040,23 +973,22 @@ new Chart(el("payChart"), {
 
 new Chart(el("genderChart"), {
 
-    type: "doughnut",
+    type:"doughnut",
 
-    data: {
-        labels: ["Female", "Male"],
+    data:{
+        labels:["Female","Male"],
 
-        datasets: [{
-            data: [503, 497],
-            backgroundColor: [
+        datasets:[{
+            data:[503,497],
+            backgroundColor:[
                 "#d98bb8",
                 "#6da7e8"
             ],
-            borderWidth: 0
+            borderWidth:0
         }]
     },
 
-    options: donutOptions
-
+    options:donutOptions
 });
 
 // ---------------------------------
@@ -1065,20 +997,27 @@ new Chart(el("genderChart"), {
 
 new Chart(el("engagementChart"), {
 
-    type: "doughnut",
+    type:"doughnut",
 
-    data: {
-        labels: ["Data Not Available"],
+    data:{
+        labels:[
+            "Moderate Engagement",
+            "High Engagement",
+            "Low Engagement"
+        ],
 
-        datasets: [{
-            data: [1],
-            backgroundColor: ["#526273"],
-            borderWidth: 0
+        datasets:[{
+            data:[586,220,194],
+            backgroundColor:[
+                "#d6ad55",
+                "#45b9b0",
+                "#6da7e8"
+            ],
+            borderWidth:0
         }]
     },
 
-    options: donutOptions
-
+    options:donutOptions
 });
 
 // ---------------------------------
@@ -1087,20 +1026,27 @@ new Chart(el("engagementChart"), {
 
 new Chart(el("churnChart"), {
 
-    type: "doughnut",
+    type:"doughnut",
 
-    data: {
-        labels: ["Data Not Available"],
+    data:{
+        labels:[
+            "Low Risk",
+            "Medium Risk",
+            "High Risk"
+        ],
 
-        datasets: [{
-            data: [1],
-            backgroundColor: ["#526273"],
-            borderWidth: 0
+        datasets:[{
+            data:[532,274,194],
+            backgroundColor:[
+                "#45b9b0",
+                "#d6ad55",
+                "#e87575"
+            ],
+            borderWidth:0
         }]
     },
 
-    options: donutOptions
-
+    options:donutOptions
 });
 
 </script>
